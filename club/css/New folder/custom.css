@@ -1,0 +1,28 @@
+.modal-backdrop {
+	 position: unset; 
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1040;
+	background-color: #000;
+}
+.start-footer{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid #5F5F5F;
+}
+.img-thumbnail {
+	display: inline-block;
+	width: 100% \9;
+	height: auto;
+	padding: 4px;
+	line-height: 1.42857143;
+	 background-color: unset !important; 
+	 border: none; 
+	border-radius: 4px;
+	-webkit-transition: all .2s ease-in-out;
+	-o-transition: all .2s ease-in-out;
+	transition: all .2s ease-in-out;
+}

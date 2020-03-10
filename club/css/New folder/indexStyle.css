@@ -1,0 +1,205 @@
+
+*{
+    font-family: 'Verdana';
+}
+/* accordian*/
+body{
+    font-family: 'Verdana';
+}
+
+.panel-title {
+	margin-top: 0;
+	margin-bottom: 0;
+	font-size: 14px;
+	color: inherit;
+	font-weight: bold;
+}
+.panel-title img {
+    width:26px !important;
+}
+/*live*/
+.livem {
+    background: #006254 !important;
+    padding: 10px !important;
+    border: 1px solid #686868;
+    color: #D7D7D7 !important;
+    border-top: 1px solid #6F6F6F;
+}
+.livem {
+    color: #D8AB7D !important;
+}
+.upcoming {
+    background: #006254 !important;
+    padding: 5px !important;
+    border: 1px solid #686868;
+    color: #d8ab7d !important;
+    border-top: 1px solid #6f6f6f;
+}
+.first-lebal {
+    background: #005a4c !important;
+    color: #d1d1d1 !important;
+    font-size: 14px !important;
+}
+.second-lebal {
+    background: #5c5c5c !important;
+    color: #CCCCCC !important;
+    font-size: 13px !important;
+}
+.panel-body{
+    background: #fcfcfc;
+}
+.mrq {
+    color: #e7ba8b;
+    background: #016d5f;
+    border-left: 2px solid #d8ab7d;
+    border-right: 2px solid #d8ab7d;
+    font-size: 15px;
+    border-bottom: 1px solid #9e7143;
+}
+.content-container {
+
+    margin-left: auto;
+    margin-right: auto;
+}
+.pr-0 {
+    padding-right: 0 !important;
+}
+.pl-0 {
+    padding-left: 0 !important;
+}
+.p-0 {
+    padding: 0 !important;
+}
+.panel2 {
+    margin-bottom: 0px;
+    background-color: #fff;
+    border: 0px solid transparent;
+    border-radius: 0px;
+    -webkit-box-shadow: 0 0px 0px rgba(0,0,0,.05);
+    box-shadow: 0 0px 0px rgba(0,0,0,.05);
+}
+.panel-heading {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(141,141,141,.3) !important;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+}
+.button-rate {
+    width: 120px;
+    border-bottom: 3px solid #DD5246;
+    background: #F1F1F1;
+    color: #14805E;
+}
+.bg {
+    background: #3A5159 !important;
+    margin-left: 16px;
+    font-size: 11px;
+    color: #EE6256 !important;
+}
+.bgu {
+    background: #334A52 !important;
+    margin-left: 16px;
+    font-size: 11px;
+    color: #E06435 !important;
+}
+
+.t-back {
+    background: #555555;
+    border-left: 1px solid #7D7D7D;
+    border-right: 1px solid #7D7D7D;
+}
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
+    color: #BABABA;
+    cursor: default;
+    background-color: #666666;
+    border: 1px solid #7F7F7F;
+    border-bottom-color: transparent;
+}
+.nav-tabs {
+    border-bottom: 0px solid #ddd;
+    margin-top: -3px;
+}
+.t-back li a {
+	color: #95B800;
+	text-decoration: none;
+	font-size: 10px !important;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    text-decoration: none;
+    background-color: #4F555B;
+}
+.nav-tabs > li > a:hover {
+    border: 0px;
+}
+.navbar-default{
+    border-bottom: 0px;
+}
+
+.nav_title li a{
+    color: #d2d2d2 !important;
+}
+.t-back li ul {
+    background: #585858;
+    list-style: none;
+    padding: 0px 0px;
+    border-right: 1px solid #474747;
+    border-left: 1px solid #717171;
+    border-bottom: 1px solid #717171;
+    border-top: 1px solid #717171;
+}
+.t-back li ul:hover  li a{
+    color: #ffffff;
+}
+.t-back li ul:hover {
+
+    background: #4C4C4C;
+}
+.t-back li  {
+    cursor: pointer;
+}
+.dateshow {
+    text-align: center;
+    padding: 0px 0px;
+    color: #fff;
+    background: #005a4c;
+    font-size: 13px;
+    margin-bottom: 0px;
+    font-weight: 500;
+    width: 120px;
+    margin-top: 8px;
+}
+.progressBar {
+    width: 100%;
+    margin: 10px auto;
+    height: 15px;
+    background-color: rgba(238, 98, 86, 0.77);
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.progressBar div {
+    height: 100%;
+    text-align: right;
+    padding: 0 10px;
+    line-height: 16px;
+    width: 0;
+    background:linear-gradient(90deg, #068b1f 100%, #068b1f 100%);
+    box-sizing: border-box;
+    color: #fff;
+    border-radius: 15px;
+}
+.countdown{
+    text-align: left;
+    margin-top: 10px;
+}
+.countdown span {
+    color: #fff;
+    font-weight: 500;
+    font-size: 12px;
+}
+.countdown .progressBar{
+    margin-top: 0px;
+}
+/*.active-question{*/
+    /*background: #000;*/
+/*}*/

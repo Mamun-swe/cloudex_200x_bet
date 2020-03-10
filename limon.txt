@@ -1,0 +1,41 @@
+****   1.   User Panel  (click korle sorasori oi id te dhuke jabe same as whm to cPanel)
+   2.   club panel  (protita club er pashe koto jon user ache eta show korbe and action thakbe click korle sorasori club e login jye jabe)
+   3.   club permofance list admin panel theke manusally deya jabe eta website e show korbe..
+   4.   club e edit option e club perchantige change korar option thakbe
+   5.   games list theke game delete option thakbena. and betting  option thkew delete option tule dite hbe
+   6.   game lsit theke edit option e update e kaj kore na etay solved korte hobe
+   7.   bhule kono khela kono live admin rool er lok win ba lose diye fele thle or oikhane sob block hye jabe and super admin seta te ekta option e click korle khela active hye jabe 
+   8.   bit list thekw status change hbe number 7 er onujayi.
+   10.  bit list e 2 ta option thakbe ekta hocche mark sevarle arekta hocche all evabe super admin delete korte parben.
+   11.  finished games list ew number 10 er moto kaj hbe
+   12.  diposit list e number 11.10 er moto kaj korbe. and diposit er roll manager edit and delete korte parben na
+   13.  payment option e bkash select kore jodi kew diposit kore thle admin er kase bkash nisebe ase..kintu jodi admin theke 2 ta option deya thake thle thik moto kaj kore na
+   14.  limit(windraw / diposit) 
+   15.  dipost er je role thakbe kew dipodit korle se alert er ekta sound pabe.. 
+***   16.  admin panel e today diposite total winderaw option thakbe every moth monthly every day... 
+   17.  diposit er je manager ache se accpet e click korle tar sob block hye jabe kjodi bhule kore thake seta suope admin thi korte parbe
+   18.  widraw te delete and edit option pabena widraw er je maanger.. (diposit er moto same kaj)
+   19.  super admin mark several and delete option pabe
+   20.  widnwar and diposit limit
+   21.  widraw list e accpet e click krole ekta popap asbe seta te likhe dite parben number ba onno kisu..
+   22.  user return balaance and user added balance not akare leikha dite parbe,
+   23.  add bet option e 1-50 othoba 1-30 porjnto kaj korbe manusally sob dite hbena...
+   24 . same 1st over run ... odded and even... 
+   25 . trash option e asbe... finisdhed games lished. diposit. widraw. User . club. bet history. diposit Number.
+   26 . trash e arekta option thakbe.. mark seravel all delete,,
+   27 . Transaction History user ra akk transactino history dekhte parbe. 
+   28 . Live Score... 
+   29 . live khela upload deyar somoy games manager select kore dite parbe je eta te heading show korbe kina .,. 
+   30 . Account Theke User account e arekta option add hobe seta hocche club found
+   31 . Today Total Bit and monthly Total Bet...
+   32 . Sirially Post hobe.
+   33 . Bet List e  AM PM Dite Hobe.
+   34 . Games List e proti ta question er jonno 1 tai status. ekhon alada kore deya ache.. ektai hobe.
+   35 .
+
+
+ 
+
+
+
+
