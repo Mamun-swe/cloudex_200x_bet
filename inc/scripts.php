@@ -239,28 +239,48 @@
 
             function depositPost() {
 
-              var amount=document.getElementById("req-deposit-amount").value;
-              var sellist1=document.getElementById("sel1").value;
-              var from=document.getElementById("req-deposit-from").value;
-              var to=document.getElementById("req-deposit-to").value;
-              var transection_number=document.getElementById("req-deposit-transaction_number").value;
-              $.ajax({
-                url : "deposit.php",
-                type : "post",
-                dataType:"text",
-                data : {
-                 transection_number: transection_number,
-                 sellist1: sellist1,
-                 from: from,
-                 to: to,
-                 amount: amount
-               },
-               success : function (a){
-                var respData2 = JSON.parse(a);
-                $('#status_data').html(respData2.statues);
-                $('#requestDepositModal').modal('show');
+            //   var amount=document.getElementById("req-deposit-amount").value;
+            //   var sellist1=document.getElementById("sel1").value;
+            //   var from=document.getElementById("req-deposit-from").value;
+            //   var to=document.getElementById("req-deposit-to").value;
+            //   var transection_number=document.getElementById("req-deposit-transaction_number").value;
+            //   $.ajax({
+            //     url : "deposit.php",
+            //     type : "post",
+            //     dataType:"text",
+            //     data : {
+            //      transection_number: transection_number,
+            //      sellist1: sellist1,
+            //      from: from,
+            //      to: to,
+            //      amount: amount
+            //    },
+            //    success : function (a){
+            //     var respData2 = JSON.parse(a);
+            //     $('#status_data').html(respData2.statues);
+            //     $('#requestDepositModal').modal('show');
+            //   }
+            // });
+
+              var data = {
+                sellist1: document.getElementById("sel1").value,
+                to: document.getElementById("req-deposit-to").value,
+                amount: document.getElementById("req-deposit-amount").value,
+                from: document.getElementById("req-deposit-from").value,
+                transection_number: document.getElementById("req-deposit-transaction_number").value
               }
-            });
+
+                $.ajax({
+                    url : "deposit.php",
+                    type : "post",
+                    data : data,
+                  success : function (a){
+                    console.log(a);
+                    // var respData2 = JSON.parse(a);
+                    // $('#status_data').html(respData2.statues);
+                    // $('#requestDepositModal').modal('show');
+                  }
+                });
 
             } 
           </script>

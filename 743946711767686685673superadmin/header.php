@@ -44,6 +44,9 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="vanilla-calendar/vanilla-calendar-min.css">
 
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
 
 	<script src="js/jquery-2.2.4.min.js"></script>
 	<script src="vanilla-calendar/vanilla-calendar-min.js"></script>
@@ -247,9 +250,22 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 							<li><a href="contact-message.php"><i class="fa fa-circle-o"></i> Contact Message</a></li>
 					    </ul>
 					</li>
-				<?php } ?>
+				<?php } 
+					if($_SESSION['admin']['role'] == 'Deposite') { 
+				?>
+				
+					<li class="treeview <?php if( ($cur_page == 'deposit.php')|| ($cur_page == 'deposit-add.php') || ($cur_page == 'deposit-edit.php') ) {echo 'active';} ?>">
+						<a href="deposit.php">
+							<i class="fa fa-hand-o-right"></i> <span>Deposit List</span>
+						</a>
+					</li>
+				
+				<?php
+					}
+				?>
 			</ul>
 		</section>
 	</aside>
+
 
 	<div class="content-wrapper">

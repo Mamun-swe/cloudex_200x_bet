@@ -4,9 +4,16 @@
 	<div class="content-header-left">
 		<h1>View Deposits</h1>
 	</div>
-	<div class="content-header-right">
-		<a href="deposit-add.php" class="btn btn-primary btn-sm">Add New Deposit</a>
-	</div><br><br>
+	
+	<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
+		<div class="content-header-right ml-3">
+			<a href="diposite-limit.php" class="btn btn-orange btn-sm text-white">Diposite Limit</a>
+		</div>
+		<div class="content-header-right">
+			<a href="deposit-add.php" class="btn btn-primary btn-sm">Add New Deposit</a>
+		</div>
+		<br><br>
+	<?php } ?>
 </section>
 
 
@@ -36,9 +43,11 @@
 			        <th>Note</th>
 			        <th>Status</th>
 			        <th>Action</th>
+					<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
 			        <th>Action</th>
 			        <th>Action</th>
 			        <th>Action</th>
+					<?php } ?>
 			    </tr>
 			</thead>
             <tbody>
@@ -60,19 +69,41 @@
 	                    <td><?php echo $row['transection_number']; ?></td>
 	                    <td><?php echo $row['date']; ?></td>
 	                    <td><?php echo $row['note']; ?></td>
-	                    <td><?php if($row['status']==1) {echo 'Accepted';} else if($row['status']==2) {echo 'Rejected';} else {echo 'Pending';}?></td>
 	                    <td>
+						<?php 
+							if($row['status']==1) {
+								echo 'Accepted';
+							} else if($row['status']==2) {
+								echo 'Rejected';
+							} else {
+								echo 'Pending';
+							}?>
+						</td>
+	                    <td class="text-center">
+							<?php
+								if($row['status']==0) {
+							?>
 							<a href="deposit-accept.php?id=<?php echo $row['deposit_id']; ?>" class="btn btn-success btn-xs">Accept</a>
+							<?php 
+								} 
+								if($row['status']==1){
+							?>
+								<button type="button" class="btn btn-sm btn-success text-white" disabled><i class="fas fa-check"></i></button>
+							<?php
+								}
+							?>
 						</td>
-						<td>
-							<a href="deposit-reject.php?id=<?php echo $row['deposit_id']; ?>" class="btn btn-danger btn-xs">Reject</a>
-						</td>
-	                    <td>
-	                        <a href="deposit-edit.php?id=<?php echo $row['deposit_id']; ?>" class="btn btn-primary btn-xs">Edit</a>
-	                    </td>
-	                    <td>
-	                        <a href="#" class="btn btn-danger btn-xs" data-href="deposit-delete.php?id=<?php echo $row['deposit_id']; ?>" data-toggle="modal" data-target="#confirm-delete">Delete</a>
-	                    </td>
+						<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
+							<td>
+								<a href="deposit-reject.php?id=<?php echo $row['deposit_id']; ?>" class="btn btn-danger btn-xs">Reject</a>
+							</td>
+							<td>
+								<a href="deposit-edit.php?id=<?php echo $row['deposit_id']; ?>" class="btn btn-primary btn-xs">Edit</a>
+							</td>
+							<td>
+								<a href="#" class="btn btn-danger btn-xs" data-href="deposit-delete.php?id=<?php echo $row['deposit_id']; ?>" data-toggle="modal" data-target="#confirm-delete">Delete</a>
+							</td>
+						<?php } ?>
 	                </tr>
             		<?php
             	}

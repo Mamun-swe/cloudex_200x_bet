@@ -96,6 +96,7 @@ if(isset($_POST['form1'])) {
                             <option value="">Select Admin Role</option>
                             <option value="Admin">Admin</option>
                             <option value="Super admin">Super admin</option>
+                            <option value="Deposite">Deposite admin</option>
                         </select>
                     </div>
                 </div>

@@ -1,5 +1,5 @@
-****   1.   User Panel  (click korle sorasori oi id te dhuke jabe same as whm to cPanel)
-   2.   club panel  (protita club er pashe koto jon user ache eta show korbe and action thakbe click korle sorasori club e login jye jabe)
+   *** 1.   User Panel  (click korle sorasori oi id te dhuke jabe same as whm to cPanel)
+   *** 2.   club panel  (protita club er pashe koto jon user ache eta show korbe and action thakbe click korle sorasori club e login jye jabe)
    3.   club permofance list admin panel theke manusally deya jabe eta website e show korbe..
    4.   club e edit option e club perchantige change korar option thakbe
    5.   games list theke game delete option thakbena. and betting  option thkew delete option tule dite hbe
@@ -9,11 +9,12 @@
    10.  bit list e 2 ta option thakbe ekta hocche mark sevarle arekta hocche all evabe super admin delete korte parben.
    11.  finished games list ew number 10 er moto kaj hbe
    12.  diposit list e number 11.10 er moto kaj korbe. and diposit er roll manager edit and delete korte parben na
-   13.  payment option e bkash select kore jodi kew diposit kore thle admin er kase bkash nisebe ase..kintu jodi admin theke 2 ta option deya thake thle thik moto kaj kore na
+   13.  payment option e bkash select kore jodi kew diposit kore thle admin er kase bkash hisebe ase..kintu jodi admin theke 2 ta option deya thake thle thik moto kaj kore na
    14.  limit(windraw / diposit) 
-   15.  dipost er je role thakbe kew dipodit korle se alert er ekta sound pabe.. 
-***   16.  admin panel e today diposite total winderaw option thakbe every moth monthly every day... 
-   17.  diposit er je manager ache se accpet e click korle tar sob block hye jabe kjodi bhule kore thake seta suope admin thi korte parbe
+   * It's not possible in this language 
+	{{{{ 15.  dipost er je role thakbe kew dipodit korle se alert er ekta sound pabe.. }}}
+   *** 16.  admin panel e today diposite total winderaw option thakbe every moth monthly every day... 
+   *** 17.  diposit er je manager ache se accpet e click korle tar sob block hye jabe kjodi bhule kore thake seta suope admin thi korte parbe
    18.  widraw te delete and edit option pabena widraw er je maanger.. (diposit er moto same kaj)
    19.  super admin mark several and delete option pabe
    20.  widnwar and diposit limit
