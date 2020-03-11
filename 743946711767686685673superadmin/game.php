@@ -53,6 +53,8 @@
 								<tr class="<?php if($row['game_status']==1) {echo 'bg-g';}else if($row['game_status']==2) {echo 'bg-r';} else {echo 'bg-a';} ?>">
 									<td><?php echo $i; ?></td>
 									<td><?php echo $row['type']; ?></td>
+									<td><?php echo $row['game_name']; ?></td>
+									
 									<td><?php echo $row['desh1'].'<span style="color:red;"> VS </span>'. $row['desh2']; ?></td>
 									<td><?php echo $row['tournament']; ?></td>
 									<td><?php echo $row['date']; ?></td>
@@ -103,9 +105,9 @@
         	                        <td>
 	                                    <a href="game-edit.php?id=<?php echo $row['game_id']; ?>" class="btn btn-primary btn-xs">Edit</a>
 	                                </td>
-	                                <td>
+	                                <!-- <td>
 	                                    <a href="#" class="btn btn-danger btn-xs" data-href="game-delete.php?id=<?php echo $row['game_id']; ?>" data-toggle="modal" data-target="#confirm-delete">Delete</a>
-	                                </td>
+	                                </td> -->
 								</tr>
 								<?php
 							}
@@ -121,7 +123,7 @@
 </section>
 
 
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -137,7 +139,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 
 <?php require_once('footer.php'); ?>

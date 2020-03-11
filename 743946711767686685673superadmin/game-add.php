@@ -4,6 +4,11 @@
 if(isset($_POST['form1'])) {
 	$valid = 1;
 
+	if(empty($_POST['game_name'])) {
+        $valid = 0;
+        $error_message .= "Please Enter Game Name<br>";
+    }
+
     if(empty($_POST['type'])) {
         $valid = 0;
         $error_message .= "Please Select Game Type<br>";
@@ -44,6 +49,7 @@ if(isset($_POST['form1'])) {
 		//Saving data into the main table tbl_product
 		$update="--";
 		$statement = $pdo->prepare("INSERT INTO `tbl_game`(
+										`game_name`,
 									    `type`, 
 									    `desh1`, 
 									    `desh2`, 
@@ -52,9 +58,10 @@ if(isset($_POST['form1'])) {
 										`time`, 
 										`game_update`,
 									    `game_status`
-									) VALUES (?,?,?,?,?,?,?,?)");
+									) VALUES (?,?,?,?,?,?,?,?,?)");
 
 		$statement->execute(array(
+										$_POST['game_name'],
 										$_POST['type'],
 										$_POST['desh1'],
 										$_POST['desh2'],
@@ -102,6 +109,13 @@ if(isset($_POST['form1'])) {
 
 				<div class="box box-info">
 					<div class="box-body">
+
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Game name <span>*</span></label>
+							<div class="col-sm-4">
+								<input type="text" name="game_name" class="form-control">
+							</div>
+						</div>
 						<div class="form-group">
         					<label for="" class="col-sm-3 control-label">Select Game Type</label>
         					<div class="col-sm-4">

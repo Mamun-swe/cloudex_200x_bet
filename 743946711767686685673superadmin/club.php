@@ -28,6 +28,7 @@
 								<th width="180">Opening Date</th>
 								<th width="180">Status</th>
 								<th width="180" class="text-center">Members</th>
+								<th width="180" class="text-center">Percenteg</th>
 								<th width="180" class="text-center">Profile</th>
 								<th width="100">Action</th>
 								<th width="50">Action</th>
@@ -38,8 +39,19 @@
 							<?php
 							$i=0;
 							$statement = $pdo->prepare(
-								"SELECT tbl_club.club_id,tbl_club.open_date,tbl_club.club_status,tbl_member.full_name,tbl_club.club_name 
-								FROM tbl_club JOIN tbl_member ON tbl_club.club_owner_id=tbl_member.user_id
+								"SELECT 
+									tbl_club.club_id,
+									tbl_club.open_date,
+									tbl_club.club_status,
+									tbl_club.club_percenteg,
+									tbl_member.full_name,
+									tbl_club.club_name 
+								FROM 
+									tbl_club 
+								JOIN 
+									tbl_member 
+								ON 
+								tbl_club.club_owner_id=tbl_member.user_id
 								");
 							$statement->execute();
 							$result = $statement->fetchAll(PDO::FETCH_ASSOC);						
@@ -61,6 +73,20 @@
 											echo $clubMembers;
 										?>
 									
+									</td>
+									<td class="text-center">
+										<?php 
+											if($row['club_percenteg'] > 0){
+										?>
+											<p class="mb-0"><b><?php echo $row['club_percenteg']; ?>%</b></p>
+										<?php
+											}else{
+										?>
+											<p class="mb-0"><b>0%</b></p>
+										<?php
+											}
+										?>
+										
 									</td>
 									<td class="text-center">
 										<?php

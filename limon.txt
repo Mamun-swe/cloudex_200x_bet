@@ -2,8 +2,8 @@
    *** 2.   club panel  (protita club er pashe koto jon user ache eta show korbe and action thakbe click korle sorasori club e login jye jabe)
    3.   club permofance list admin panel theke manusally deya jabe eta website e show korbe..
    4.   club e edit option e club perchantige change korar option thakbe
-   5.   games list theke game delete option thakbena. and betting  option thkew delete option tule dite hbe
-   6.   game lsit theke edit option e update e kaj kore na etay solved korte hobe
+  *** 5.   games list theke game delete option thakbena. and betting  option thkew delete option tule dite hbe
+  *** 6.   game lsit theke edit option e update e kaj kore na etay solved korte hobe
    7.   bhule kono khela kono live admin rool er lok win ba lose diye fele thle or oikhane sob block hye jabe and super admin seta te ekta option e click korle khela active hye jabe 
    8.   bit list thekw status change hbe number 7 er onujayi.
    10.  bit list e 2 ta option thakbe ekta hocche mark sevarle arekta hocche all evabe super admin delete korte parben.

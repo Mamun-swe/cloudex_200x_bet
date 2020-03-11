@@ -12,27 +12,30 @@ if(isset($_POST['form1'])) {
     if(empty($_POST['owner'])) {
         $valid = 0;
         $error_message .= "You must enter owner id<br>";
-    }
+	}
     
     if($valid == 1) {
-$balance=0;
-		//Saving data into the main table tbl_product
+		$balance=0;
+		$percenteg='3';
 		$date=date("d/m/Y");
-
+		//Saving data into the main table tbl_product
+	
 		$statement = $pdo->prepare("INSERT INTO `tbl_club`(
 									    `club_name`, 
 									    `club_owner_id`, 
 									    `open_date`, 
-									    `club_status`
-									    `balance`
-									) VALUES (?,?,?,?,?)");
+									    `club_status`,
+									    `balance`,
+										`club_percenteg`
+									) VALUES (?,?,?,?,?,?)");
 
 		$statement->execute(array(
 			$_POST['name'],
 			$_POST['owner'],
 			$date,
 			$valid,
-			$balance
+			$balance,
+			$percenteg
 		));
 
 	
@@ -83,7 +86,8 @@ $balance=0;
 							<div class="col-sm-4">
 								<input type="number" name="owner" class="form-control">
 							</div>
-						</div>	
+						</div>		
+
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label"></label>
 							<div class="col-sm-6">

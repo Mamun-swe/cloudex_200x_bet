@@ -17,14 +17,31 @@ if(isset($_POST['form1'])) {
     if(empty($_POST['owner'])) {
         $valid = 0;
         $error_message .= "You must have to enter owner id<br>";
-    }
+	}
+	
+	if(empty($_POST['percenteg'])) {
+        $valid = 0;
+        $error_message .= "You must have to enter club percenteg<br>";
+	}
 
 
     if($valid == 1) {
 
-		$statement = $pdo->prepare("UPDATE `tbl_club` SET `club_name`=?,`club_owner_id`=?,`open_date`=? WHERE club_id=?");
+		$statement = $pdo->prepare(
+			"UPDATE `tbl_club` 
+			 SET `club_name`=?,
+			 	`club_owner_id`=?,
+				`open_date`=?, 
+				`club_percenteg`=?
+			WHERE club_id=?");
 		
-		$statement->execute(array($_POST['name'],$_POST['owner'],$_POST['date'],$_REQUEST['id']));
+		$statement->execute(array(
+			$_POST['name'],
+			$_POST['owner'],
+			$_POST['date'],
+			$_POST['percenteg'],
+			$_REQUEST['id']
+		));
 		$msg="CLub is edited successfully.";
 	    $url = "club.php?message=$msg";
         header("Location: ".$url);
@@ -68,6 +85,7 @@ foreach ($result as $row) {
 	$club_name = $row['club_name'];
 	$owner_id = $row['club_owner_id'];
 	$date = $row['open_date'];
+	$club_percenteg = $row['club_percenteg'];
 }
 ?>
 
@@ -107,7 +125,17 @@ foreach ($result as $row) {
 							<div class="col-sm-4">
 								<input type="text" name="date" class="form-control" value="<?php echo $date; ?>">
 							</div>
-						</div>	
+						</div>
+
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Club Percenteg <span>*</span></label>
+							<div class="col-sm-4">
+								<input type="text" name="percenteg" class="form-control" value="<?php echo $club_percenteg; ?>">
+							</div>
+						</div>
+
+
+
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label"></label>
 							<div class="col-sm-6">

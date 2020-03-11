@@ -87,9 +87,9 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 											<td>
 												<a href="bet-option-edit.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Edit</a>
 											</td>
-											<td>
+											<!-- <td>
 												<a href="#" class="btn btn-danger btn-xs" data-href="bet-option-delete.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" data-toggle="modal" data-target="#confirm-delete">Delete</a>
-											</td>
+											</td> -->
 										</tr>
 										<?php
 									}
@@ -104,7 +104,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 
 		</section>
 
-
+<!-- 
 		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -121,7 +121,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 
 		<?php require_once('footer.php'); ?>
