@@ -9,7 +9,7 @@
                 <div class="modal-body" style="padding: 2% !important">
                     <div class="">
                         <div role="form" class="register-form">
-                            <div id="status_data">
+                            <div id="status_data" style="background-color: rgb(248, 215, 218); font-size: 16px;color: #000;">
                             </div>
                             <hr class="colorgraph">
                             <div class="row">

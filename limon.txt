@@ -10,7 +10,7 @@
    11.  finished games list ew number 10 er moto kaj hbe
    12.  diposit list e number 11.10 er moto kaj korbe. and diposit er roll manager edit and delete korte parben na
    13.  payment option e bkash select kore jodi kew diposit kore thle admin er kase bkash hisebe ase..kintu jodi admin theke 2 ta option deya thake thle thik moto kaj kore na
-   14.  limit(windraw / diposit) 
+   *** 14.  limit(windraw / diposit) 
    * It's not possible in this language 
 	{{{{ 15.  dipost er je role thakbe kew dipodit korle se alert er ekta sound pabe.. }}}
    *** 16.  admin panel e today diposite total winderaw option thakbe every moth monthly every day... 
