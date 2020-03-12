@@ -18,9 +18,15 @@
     $statement->execute();
     $today_deposite = $statement->fetchColumn();
     if($today_deposite > 0){
-      echo json_encode($today_deposite);
+      $response=array(
+        "amount" => $today_deposite
+      );
     }else{
-      echo json_encode(0);
+      $response=array(
+        "amount" => 0
+      );
     }
+
+    echo json_encode($response);
     
 ?>

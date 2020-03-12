@@ -145,8 +145,9 @@ $today_deposite = $statement->fetchColumn();
 						<input type="date" id="date" class="form-control shadow-none mt-2">
 						</div>
 					</div>
-
-					<div class="card result"></div>
+ 
+					<div class="card result">
+					</div>
 					
 				</div>
 					
@@ -161,8 +162,14 @@ $today_deposite = $statement->fetchColumn();
 						url: 'live-deposite-count.php',
 						data: data,
 						success : function(response){
-							console.log(response);
-							$('.result').append('<div class="card-body"><h5 class="text-danger"><b>Total deposite of this month: '+ response +'</b></h5></div>');
+							var obj = JSON.parse(response);
+							var deposite = obj.amount;
+							if(deposite > 0){
+								$('.result').append('<div class="card-body"><h5 class="text-success"><b>Total deposite of this date: '+ deposite +'</b></h5></div>');
+							} else{
+								$('.result').append('<div class="card-body"><h5 class="text-danger"><b>Total deposite of this date: '+ deposite +'</b></h5></div>');
+							}
+							
 						}
 					});
 				});

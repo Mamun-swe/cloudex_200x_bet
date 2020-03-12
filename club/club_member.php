@@ -11,9 +11,6 @@ $date=date("Y-m-d h:i");
 if(isset($_SESSION['user'])){
 	$uid=$_SESSION['user']['cc_id'];
 	$pass=$_SESSION['user']['password'];
-	
-	
-
 }
 
 
@@ -55,6 +52,7 @@ if(isset($_SESSION['user'])){
 												$last="--";
 												$total="0";
 												$total_commission=0;
+												$club_percenteg = "";
 												
 												$statement9 = $pdo->prepare("SELECT * FROM tbl_member WHERE tbl_member.club_id=? ORDER BY tbl_member.user_id ASC");
                                             	$statement9->execute(array($uid));
@@ -74,17 +72,29 @@ if(isset($_SESSION['user'])){
                                             	            
                                             	   //     }
                                             	    }
-                                            	    $commission=$commission*0.02;
+													// Select club percentage
+													$statementx = $pdo->prepare("SELECT club_percenteg FROM tbl_club WHERE club_id=?");
+													$statementx->execute(array($row9['club_id']));
+													$result = $statementx->fetchAll(PDO::FETCH_ASSOC);
+													foreach ($result as $row) {
+														$club_percenteg = $row['club_percenteg'];
+													}
+
+													// $commission=$commission*0.02;
+                                            	    $commission=$commission * ($club_percenteg / 100);
                                             	    
                                             	    $total=$total+$total_bet;
-                                            	    $total_commission=$total_commission+$commission;
+													$total_commission=$total_commission+$commission;
 													?>
 													<tr>
 														<td scope="col"><?php echo "$i"; ?></td>
 														<td scope="col" class="text-center"><?php echo $row9['joining_date']; ?></td>
 														<td scope="col" class="text-center"><?php echo $last; ?></td>
 														<td scope="col"><?php echo $row9['full_name']; ?></td>
-														<td scope="col" class="text-center"><?php echo $row9['user_name']; ?></td>
+														<td scope="col" class="text-center">
+															<?php echo $row9['user_name']; ?>
+															<?php echo $club_percenteg; ?>
+														</td>
 														<td scope="col" class="text-center"><?php echo $total_bet; ?></td>
 														<td scope="col" class="text-center text-success"><?php echo number_format($commission, 2, '.', ','); ?></td>
 													</tr>
