@@ -4,6 +4,23 @@
 	<div class="content-header-left">
 		<h1>View Bets</h1>
 	</div>
+	<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
+	<div class="content-header-right">
+		<form method="post">
+			<button type="submit" name="submit" class="btn btn-danger">Delete All</button>
+			<?php 
+				if(isset($_POST['submit'])){
+					$statement = $pdo->prepare("DELETE FROM tbl_bet");
+					$statement->execute();
+				}
+			?>
+		</form>
+	</div>
+	
+	<div class="content-header-right">
+		<button type="button" class="btn btn-info" id="test" style="margin-right: 8px;">Delete Selected</button>
+	</div>
+	<?php } ?>
 </section>
 
 <section class="content">
@@ -19,6 +36,7 @@
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
+								<th width="30">Select</th>
 								<th width="30">SL</th>
 								<th width="30">Bet By</th>
 								<th width="160">Date & Time</th>
@@ -62,6 +80,9 @@
 								}
 								?>
 								<tr>
+									<td>
+										<input type="checkbox" class="form-check-input" value="<?php echo $row['bet_id']; ?>">
+									</td>
 									<td><?php echo $i; ?></td>
 									<td><?php echo $row['user_name']; ?></td>
 									<td><?php echo $pieces[0]."<br><br>".$pieces[1]; ?></td>
@@ -111,5 +132,28 @@
 	</div>
 </div>
 
+
+<script>
+$("#test").click(function(e) {
+    var myArray = [];
+    $(":checkbox:checked").each(function() {
+        myArray.push({
+			id: this.value
+		});
+    });
+   $.ajax({
+		type: 'POST',
+		url: 'delete_selected_bet.php',
+		data: {myArray},
+		success : function(response){
+			var obj = JSON.parse(response);
+			var res = obj.success;
+			if(res == 1){
+				location.reload();
+			}
+		}
+	});
+});
+</script>
 
 <?php require_once('footer.php'); ?>

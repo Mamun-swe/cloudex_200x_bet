@@ -4,8 +4,23 @@
 	<div class="content-header-left">
 		<h1>View Deposits</h1>
 	</div>
-	
+
 	<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
+	<div class="content-header-right">
+		<form method="post">
+			<button type="submit" name="submit" class="btn btn-danger">Delete All</button>
+			<?php 
+				if(isset($_POST['submit'])){
+					$statement = $pdo->prepare("DELETE FROM tbl_deposit");
+					$statement->execute();
+				}
+			?>
+		</form>
+	</div>
+	<div class="content-header-right">
+		<button type="button" class="btn btn-info" id="test" style="margin: 0px 8px;">Delete Selected</button>
+	</div>
+
 		<div class="content-header-right ml-3">
 			<a href="diposite-limit.php" class="btn btn-orange btn-sm text-white">Diposite Limit</a>
 		</div>
@@ -32,6 +47,7 @@
           <table id="example1" class="table table-bordered table-striped">
 			<thead>
 			    <tr>
+					<th>Select</th>
 			        <th>SL</th>
 			        <th>Request By</th>
 			        <th>Deposit To</th>
@@ -60,7 +76,10 @@
             		$i++;
             		?>
 					<tr class="<?php if($row['status']==1) {echo 'bg-g';} else if($row['status']==2) {echo 'bg-r';} ?>">
-	                    <td><?php echo $i; ?></td>
+						<td>
+							<input type="checkbox" class="form-check-input" value="<?php echo $row['deposit_id']; ?>">
+						</td>
+						<td><?php echo $i; ?></td>
 	                    <td><?php echo $row['user_name']; ?></td>
 	                    <td><?php echo $row['deposit_to']; ?></td>
 	                    <td><?php echo $row['deposit_by']; ?></td>
@@ -134,6 +153,30 @@
         </div>
     </div>
 </div>
+
+
+<script>
+$("#test").click(function(e) {
+    var myArray = [];
+    $(":checkbox:checked").each(function() {
+        myArray.push({
+			id: this.value
+		});
+    });
+   $.ajax({
+		type: 'POST',
+		url: 'delete_selected_deposite.php',
+		data: {myArray},
+		success : function(response){
+			var obj = JSON.parse(response);
+			var res = obj.success;
+			if(res == 1){
+				location.reload();
+			}
+		}
+	});
+});
+</script>
 
 
 <?php require_once('footer.php'); ?>
