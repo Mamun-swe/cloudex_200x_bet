@@ -265,6 +265,7 @@
               var withdraw_method=document.getElementById("withdraw_method").value;
               var withdraw_to=document.getElementById("req-withdraw-to").value;
               var account_type=document.getElementById("withdraw_account_type").value;
+
               $.ajax({
                 url : "withdraw.php",
                 type : "post",

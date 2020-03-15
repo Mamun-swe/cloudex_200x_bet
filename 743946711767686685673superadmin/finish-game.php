@@ -10,7 +10,7 @@
 			<button type="submit" name="submit" class="btn btn-danger">Delete All</button>
 			<?php 
 				if(isset($_POST['submit'])){
-					$statement = $pdo->prepare("DELETE FROM tbl_game");
+					$statement = $pdo->prepare("DELETE FROM tbl_game WHERE game_status = 5");
 					$statement->execute();
 				}
 			?>

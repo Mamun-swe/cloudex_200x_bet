@@ -42,35 +42,6 @@
 											</tbody></table>
 										</td>
 									</tr>
-								<!--	<tr>-->
-								<!--		<td>-->
-								<!--			<table width="100%">-->
-								<!--				<tbody><tr>-->
-								<!--					<td>-->
-								<!--						<div class="balanceTabWrap">-->
-								<!--							<img src="svg/acc_active.svg" width="25px" height="25px">-->
-								<!--						</div>-->
-								<!--					</td>-->
-								<!--					<td>-->
-								<!--						<div class="balanceTabWrap">-->
-								<!--							<div class="icon-wrap">-->
-								<!--							</div>-->
-								<!--							<img src="img/send-money.png" width="25px" height="25px">-->
-								<!--						</div>-->
-								<!--					</td>-->
-								<!--					<td>-->
-								<!--						<div class="balanceTabWrap">-->
-								<!--							<div class="icon-wrap">-->
-								<!--								<i class="fa fa-times-circle"></i>-->
-								<!--							</div>-->
-								<!--							<img src="img/withdrow.png" width="25px" height="25px">-->
-								<!--						</div>-->
-								<!--					</td>-->
-								<!--				</tr>-->
-								<!--			</tbody>-->
-								<!--		</table>-->
-								<!--	</td>-->
-								<!--</tr>-->
 							</tbody>
 						</table>
 						<?php } ;?>

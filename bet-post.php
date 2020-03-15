@@ -3,7 +3,7 @@ session_start();
 include('config.php');
 $valid=0;
 date_default_timezone_set('Asia/Dhaka');
-$date=date("Y-m-d h:i");
+$date=date("Y-m-d h:i A");
 $a=0;
 $sell="0.00";
 

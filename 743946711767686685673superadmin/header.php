@@ -166,12 +166,15 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 							<i class="fa fa-hand-o-right"></i> <span>Deposit List</span>
 						</a>
 					</li>
-
+					
+					
 					<li class="treeview <?php if( ($cur_page == 'withdraw.php')|| ($cur_page == 'withdraw-add.php') || ($cur_page == 'withdraw-edit.php') ) {echo 'active';} ?>">
 						<a href="withdraw.php">
 							<i class="fa fa-hand-o-right"></i> <span>Withdraw List</span>
 						</a>
 					</li>
+
+					
 
 					<li class="treeview <?php if( ($cur_page == 'payment.php')|| ($cur_page == 'payment-add.php') || ($cur_page == 'payment-edit.php') ) {echo 'active';} ?>">
 						<a href="payment.php">
@@ -251,7 +254,7 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 					    </ul>
 					</li>
 				<?php } 
-					if($_SESSION['admin']['role'] == 'Deposite') { 
+					if($_SESSION['admin']['role'] == 'Deposite') {
 				?>
 				
 					<li class="treeview <?php if( ($cur_page == 'deposit.php')|| ($cur_page == 'deposit-add.php') || ($cur_page == 'deposit-edit.php') ) {echo 'active';} ?>">
@@ -263,6 +266,19 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 				<?php
 					}
 				?>
+
+				<?php 
+					if($_SESSION['admin']['role'] == 'Withdraw') {
+				?>
+					<li class="treeview <?php if( ($cur_page == 'withdraw.php')|| ($cur_page == 'withdraw-add.php') || ($cur_page == 'withdraw-edit.php') ) {echo 'active';} ?>">
+						<a href="withdraw.php">
+							<i class="fa fa-hand-o-right"></i> <span>Withdraw List</span>
+						</a>
+					</li>
+				<?php
+					}
+				?>
+				
 			</ul>
 		</section>
 	</aside>

@@ -1,6 +1,6 @@
 <?php require_once('header.php'); 
 $total_Fund= 0;
- $total_w= 0;
+$total_w= 0;
 $statement = $pdo->prepare("SELECT * FROM tbl_member  ORDER BY user_id ASC");
                 // $statement = $pdo->prepare("SELECT * FROM tbl_member JOIN tbl_club ON tbl_member.club_id=tbl_club.club_id ORDER BY user_id ASC");
             	$statement->execute();
@@ -9,14 +9,19 @@ $statement = $pdo->prepare("SELECT * FROM tbl_member  ORDER BY user_id ASC");
                     $total_Fund= $total_Fund+$row['credit'];
                 }
                 
-                 $statement = $pdo->prepare("SELECT * FROM tbl_withdraw JOIN tbl_member ON tbl_withdraw.request_by=tbl_member.user_id ORDER BY withdraw_id DESC");
+                $statement = $pdo->prepare("SELECT * FROM tbl_withdraw JOIN tbl_member ON tbl_withdraw.request_by=tbl_member.user_id ORDER BY withdraw_id DESC");
             	$statement->execute();
             	$result = $statement->fetchAll(PDO::FETCH_ASSOC);							
             	foreach ($result as $row) {
             	    if($row['withdraw_status']==1){
             	        $total_w= $total_w+$row['amount'];
             	    }
-            	}
+				}
+				
+				// Club fund
+				$club_statement = $pdo->prepare("SELECT sum(balance) FROM tbl_club");
+				$club_statement->execute();
+				$total_club_fund = $club_statement->fetchColumn();
 ?>
 
 <section class="content-header">
@@ -46,6 +51,16 @@ $statement = $pdo->prepare("SELECT * FROM tbl_member  ORDER BY user_id ASC");
         				<div class="info-box-content">
         					<span class="info-box-text">User Withdraws</span>
         					<span class="info-box-number"><?php echo $total_w; ?></span>
+        				</div>
+        			</div>
+        		</div>
+
+				<div class="col-md-4 col-sm-6 col-xs-12">
+        			<div class="info-box">
+        				<span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+        				<div class="info-box-content">
+        					<span class="info-box-text">Club Funds</span>
+        					<span class="info-box-number"><?php echo $total_club_fund; ?></span>
         				</div>
         			</div>
         		</div>

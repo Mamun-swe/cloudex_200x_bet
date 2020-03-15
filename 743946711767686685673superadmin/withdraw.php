@@ -4,6 +4,26 @@
 	<div class="content-header-left">
 		<h1>View Withdraw</h1>
 	</div>
+	<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
+	<div class="content-header-right">
+		<form method="post">
+			<button type="submit" name="submit" class="btn btn-danger">Delete All</button>
+			<?php 
+				if(isset($_POST['submit'])){
+					$statement = $pdo->prepare("DELETE FROM tbl_withdraw");
+					$statement->execute();
+				}
+			?>
+		</form>
+	</div>
+	
+	<div class="content-header-right">
+		<button type="button" class="btn btn-info" id="test" style="margin: 0px 8px;">Delete Selected</button>
+	</div>
+	<?php } ?>
+	<div class="content-header-right ml-3">
+		<a href="withdraw-limit.php" class="btn btn-orange btn-sm text-white">Withdraw Limit</a>
+	</div>
 </section>
 
 
@@ -32,9 +52,11 @@
 					<th>Note</th>
 			        <th>Status</th>
 			        <th>Action</th>
+					<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
 			        <th>Action</th>
 			        <th>Action</th>
 			        <th>Action</th>
+					<?php } ?>
 			    </tr>
 			</thead>
             <tbody>
@@ -59,18 +81,21 @@
             	    }
             	}
             		}else{
-            		 $statement2 = $pdo->prepare("SELECT * FROM tbl_member ORDER BY user_id DESC");
-            	$statement2->execute();
-            	$result2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
-            	foreach ($result2 as $row2) {
-            	    if($row2['user_id']==$row['request_by']){
-            	    $name=$row2['user_name'];
-            	    }
-            		}
+            		 	$statement2 = $pdo->prepare("SELECT * FROM tbl_member ORDER BY user_id DESC");
+						$statement2->execute();
+						$result2 = $statement2->fetchAll(PDO::FETCH_ASSOC);
+						foreach ($result2 as $row2) {
+							if($row2['user_id']==$row['request_by']){
+								$name=$row2['user_name'];
+							}
+						}
             		}
             		?>
 					<tr class="<?php if($row['withdraw_status']==1) {echo 'bg-g';}else if($row['withdraw_status']==2) {echo 'bg-r';} ?>">
-	                    <td><?php echo $i; ?></td>
+						<td>
+							<input type="checkbox" class="form-check-input" value="<?php echo $row['withdraw_id']; ?>">
+						</td>
+						<td><?php echo $i; ?></td>
 	                    <td><?php echo $name; ?></td>
 	                    <td><?php echo $row['amount']; ?></td>
 	                    <td><?php echo $row['method']; ?></td>
@@ -80,8 +105,22 @@
 						<td><?php echo $row['withdraw_note']; ?></td>
 	                    <td><?php if($row['withdraw_status']==1) {echo 'Approved';} else if($row['withdraw_status']==2) {echo 'Rejected';} else {echo 'Pending';} ?></td>
 	                   <td>
+					   		<?php
+								if($row['withdraw_status']==0) {
+							?>
 							<a href="withdraw-accept.php?id=<?php echo $row['withdraw_id']; ?>" class="btn btn-success btn-xs">Accept</a>
+							<?php 
+								} 
+								if($row['withdraw_status']==1){
+							?>
+								<button type="button" class="btn btn-sm btn-success text-white" disabled><i class="fas fa-check"></i></button>
+							<?php
+								}
+							?>
 						</td>
+
+
+						<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
 						<td>
 							<a href="withdraw-reject.php?id=<?php echo $row['withdraw_id']; ?>" class="btn btn-danger btn-xs">Reject</a>
 						</td>
@@ -91,6 +130,8 @@
 	                    <td>
 	                        <a href="#" class="btn btn-danger btn-xs" data-href="withdraw-delete.php?id=<?php echo $row['withdraw_id']; ?>" data-toggle="modal" data-target="#confirm-delete">Delete</a>
 	                    </td>
+						<?php } ?>
+
 	                </tr>
             		<?php
             	}
@@ -122,5 +163,28 @@
     </div>
 </div>
 
+
+<script>
+$("#test").click(function(e) {
+    var myArray = [];
+    $(":checkbox:checked").each(function() {
+        myArray.push({
+			id: this.value
+		});
+    });
+   $.ajax({
+		type: 'POST',
+		url: 'delete_selected_withdraw.php',
+		data: {myArray},
+		success : function(response){
+			var obj = JSON.parse(response);
+			var res = obj.success;
+			if(res == 1){
+				location.reload();
+			}
+		}
+	});
+});
+</script>
 
 <?php require_once('footer.php'); ?>

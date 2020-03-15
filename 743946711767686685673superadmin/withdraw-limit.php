@@ -19,12 +19,12 @@
         }
         
         if($valid == 1) {
-            $statement = $pdo->prepare("INSERT INTO `tbl_deposite_limit`(
+            $statement = $pdo->prepare("INSERT INTO `tbl_withdraw_limit`(
                 `minimum_amount`,
                 `maximum_amount`
             ) VALUES (?,?)");
             $statement->execute(array($_POST['minimum_amount'],$_POST['maximum_amount']));
-            $msg="Limit is added successfully.";
+            $msg="Withdraw limit is added successfully.";
         }
     }
     ?>
@@ -33,7 +33,7 @@
         <div class="card border-0">
             <div class="card-body">
                 <div class="text-center">
-                    <h3>Diposite Limit</h3>
+                    <h3>Withdraw Limit</h3>
                     <h5 class="text-success"><?php if($msg){ echo $msg; } ?></h5>
                 </div>
                 <form action="" method="post">

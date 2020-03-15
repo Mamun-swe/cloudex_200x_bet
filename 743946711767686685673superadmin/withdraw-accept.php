@@ -5,6 +5,8 @@ if(!isset($_REQUEST['id'])) {
 	header('location: logout.php');
 	exit;
 } else {
+	$id = "";
+
 	// Check the id is valid or not
 	$statement = $pdo->prepare("SELECT * FROM tbl_withdraw WHERE withdraw_id=?");
 	$statement->execute(array($_REQUEST['id']));
@@ -24,6 +26,7 @@ if(!isset($_REQUEST['id'])) {
 ?>
 
 <?php
+$credit="";
 $state = $pdo->prepare("SELECT * FROM tbl_club_owner_balance_transfer WHERE club_owner_id=?");
 $state->execute(array($id));
 $results = $state->fetchAll(PDO::FETCH_ASSOC);

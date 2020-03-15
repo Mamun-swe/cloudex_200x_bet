@@ -4,6 +4,23 @@
 	<div class="content-header-left">
 		<h1>View Games</h1>
 	</div>
+	<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
+	<div class="content-header-right">
+		<form method="post">
+			<button type="submit" name="submit" class="btn btn-danger">Delete All</button>
+			<?php 
+				if(isset($_POST['submit'])){
+					$statement = $pdo->prepare("DELETE FROM tbl_game WHERE game_status != 5");
+					$statement->execute();
+				}
+			?>
+		</form>
+	</div>
+	
+	<div class="content-header-right">
+		<button type="button" class="btn btn-info" id="test" style="margin: 0px 8px;">Delete Selected</button>
+	</div>
+	<?php } ?>
 	<div class="content-header-right">
 		<a href="game-add.php" class="btn btn-primary btn-sm">Add Game</a>
 	</div>
@@ -22,6 +39,7 @@
 					<table id="example1" class="table table-bordered table-striped">
 						<thead>
 							<tr>
+								<th width="30">Select</th>
 								<th width="30">SL</th>
 								<th width="30">Game Type</th>
 								<th width="180">Game Name</th>
@@ -51,6 +69,10 @@
 								$i++;
 								?>
 								<tr class="<?php if($row['game_status']==1) {echo 'bg-g';}else if($row['game_status']==2) {echo 'bg-r';} else {echo 'bg-a';} ?>">
+									<td>
+										<input type="checkbox" class="form-check-input" value="<?php echo $row['game_id']; ?>">
+									</td>
+									
 									<td><?php echo $i; ?></td>
 									<td><?php echo $row['type']; ?></td>
 									<td><?php echo $row['game_name']; ?></td>
@@ -123,23 +145,28 @@
 </section>
 
 
-<!-- <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
-            </div>
-            <div class="modal-body">
-                <p>Are you sure want to delete this item?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger btn-ok">Delete</a>
-            </div>
-        </div>
-    </div>
-</div> -->
+<script>
+$("#test").click(function(e) {
+    var myArray = [];
+    $(":checkbox:checked").each(function() {
+        myArray.push({
+			id: this.value
+		});
+    });
+   $.ajax({
+		type: 'POST',
+		url: 'delete_selected_game.php',
+		data: {myArray},
+		success : function(response){
+			var obj = JSON.parse(response);
+			var res = obj.success;
+			if(res == 1){
+				location.reload();
+			}
+		}
+	});
+});
+</script>
 
 
 <?php require_once('footer.php'); ?>

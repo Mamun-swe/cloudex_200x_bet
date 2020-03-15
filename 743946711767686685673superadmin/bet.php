@@ -76,7 +76,6 @@
 								$resultd = $statementd->fetchAll(PDO::FETCH_ASSOC);
 								foreach ($resultd as $rowd) {
 									$date=$rowd['date'];
-									$pieces = explode(" ", $date);
 								}
 								?>
 								<tr>
@@ -85,7 +84,7 @@
 									</td>
 									<td><?php echo $i; ?></td>
 									<td><?php echo $row['user_name']; ?></td>
-									<td><?php echo $pieces[0]."<br><br>".$pieces[1]; ?></td>
+									<td><?php echo $date;?></td>
 									<td><?php echo $game; ?></td>
 									<td><?php echo $row['stake_name']; ?></td>
 									<td><?php echo $row['bet_name']; ?></td>

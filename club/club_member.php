@@ -93,7 +93,6 @@ if(isset($_SESSION['user'])){
 														<td scope="col"><?php echo $row9['full_name']; ?></td>
 														<td scope="col" class="text-center">
 															<?php echo $row9['user_name']; ?>
-															<?php echo $club_percenteg; ?>
 														</td>
 														<td scope="col" class="text-center"><?php echo $total_bet; ?></td>
 														<td scope="col" class="text-center text-success"><?php echo number_format($commission, 2, '.', ','); ?></td>
