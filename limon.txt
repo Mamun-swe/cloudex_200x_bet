@@ -22,8 +22,8 @@
    22.  user return balaance and user added balance not akare leikha dite parbe,
    23.  add bet option e 1-50 othoba 1-30 porjnto kaj korbe manusally sob dite hbena...
    24 . same 1st over run ... odded and even... 
-   25 . trash option e asbe... finisdhed games lished. diposit. widraw. User . club. bet history. diposit Number.
-   26 . trash e arekta option thakbe.. mark seravel all delete,,
+  ////// 25 . trash option e asbe... finisdhed games lished. diposit. widraw. User . club. bet history. diposit Number.
+  ///// 26 . trash e arekta option thakbe.. mark seravel all delete,,
    27 . Transaction History user ra akk transactino history dekhte parbe. 
    28 . Live Score... 
    29 . live khela upload deyar somoy games manager select kore dite parbe je eta te heading show korbe kina .,. 

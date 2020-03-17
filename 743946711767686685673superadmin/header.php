@@ -43,13 +43,16 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 	<link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/custom.css">
 	<link rel="stylesheet" href="vanilla-calendar/vanilla-calendar-min.css">
+	<link href="css/select2.min.css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
     integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	
 
 
 	<script src="js/jquery-2.2.4.min.js"></script>
 	<script src="vanilla-calendar/vanilla-calendar-min.js"></script>
+	<script src="js/select2.min.js"></script>
 </head>
 
 <body class="hold-transition fixed skin-blue sidebar-mini">
@@ -223,6 +226,7 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 						<ul class="treeview-menu">
  							<li><a href="accounts_user.php"><i class="fa fa-circle-o"></i> User Accounts</a></li> 
 							<li><a href="accounts_game_stake.php"><i class="fa fa-circle-o"></i> Game Stake</a></li>
+							<li><a href="balance_add_return.php"><i class="fa fa-circle-o"></i> Balance Add & Return</a></li>
 							
 						</ul>
 					</li>
