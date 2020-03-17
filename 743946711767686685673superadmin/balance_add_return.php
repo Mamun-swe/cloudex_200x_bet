@@ -19,18 +19,36 @@
             $error_message .= "Please enter amount<br>";
         }
 
+        if(empty($_POST['notes'])) {
+            $valid = 0;
+            $error_message .= "Please enter notes<br>";
+        }
+
+        $date = date("Y-m-d  H:i A");
+
         
         if($valid == 1) {
             $amount = $_POST['amount'];
+            
             if($_POST['condition'] == "add_balance"){
+                $add = "Admin give";
                 $statement = $pdo->prepare('UPDATE tbl_member SET credit = credit + ? WHERE ( user_id = ? )');
                 $statement->execute(array($amount, $_POST['user']));
+
+                $transaction = $pdo->prepare("INSERT INTO `tbl_transfer_list`(`user_id`, `description`, `notes`, `cash_in`, `date` ) VALUES (?,?,?,?,?)");
+                $transaction->execute(array($_POST['user'], $add, $_POST['notes'], $_POST['amount'], $date ));
                 $success = "Balance successfully added";
             }
 
             if($_POST['condition'] == "return_balance"){
+                $remove = "Admin return";
                 $statement = $pdo->prepare('UPDATE tbl_member SET credit = credit - ? WHERE ( user_id = ? )');
                 $statement->execute(array($amount, $_POST['user']));
+
+                $transaction = $pdo->prepare("INSERT INTO `tbl_transfer_list`(`user_id`, `description`, `notes`, `cash_out`, `date` ) VALUES (?,?,?,?,?)");
+                $transaction->execute(array($_POST['user'], $remove, $_POST['notes'], $_POST['amount'], $date ));
+                $success = "Balance successfully added";
+
                 $success = "Balance successfully removed";
             }
         }
@@ -110,6 +128,13 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="" class="col-sm-2 control-label">Note <span>*</span></label>
+                    <div class="col-sm-4">
+                        <textarea name="notes" class="form-control" rows="3" placeholder="Wrtite notes"></textarea>
+                    </div>
+                </div>
+
 
                 <div class="form-group">
                 	<label for="" class="col-sm-2 control-label"></label>
@@ -117,6 +142,8 @@
                       <button type="submit" class="btn btn-success pull-left" name="submit">Submit</button>
                   </div>
               </div>
+
+              
 
           </div>
 
