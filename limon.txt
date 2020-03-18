@@ -44,7 +44,7 @@
        3. deposite payment method dynamic
        4. club visit profile hobe,
        5. Game add manager. 2 type of game in side-menu Football + cricket
-       6. game manager game add korar por tranfer to game list nam e a  button thakbe sekhane clivk korle game list e hide obostay cole jabe
+       6. game manager game add korar por transfer to game list nam e a  button thakbe sekhane clivk korle game list e hide obostay cole jabe
        7. club perfomance admin theke select kore dite parbe jare prothome dibe se rothome thakbe registration somoy
 
 
