@@ -29,9 +29,24 @@
    29 . live khela upload deyar somoy games manager select kore dite parbe je eta te heading show korbe kina .,. 
   *** 30 . Account Theke User account e arekta option add hobe seta hocche club found
   *** 31 . Today Total Bit and monthly Total Bet...
-   32 . S irially Post hobe.
+   32 . Sirially Post hobe.
   *** 33 . Bet List e  AM PM Dite Hobe.
    34 . Games List e proti ta question er jonno 1 tai status. ekhon alada kore deya ache.. ektai hobe.
+
+
+
+
+
+
+	//////////////////  
+      *** 1. club list theke proti ta club er balance show korbe.
+      *** 2. Widraw status on/off kora jabe
+       3. deposite payment method dynamic
+       4. club visit profile hobe,
+       5. Game add manager. 2 type of game in side-menu Football + cricket
+       6. game manager game add korar por tranfer to game list nam e a  button thakbe sekhane clivk korle game list e hide obostay cole jabe
+       7. club perfomance admin theke select kore dite parbe jare prothome dibe se rothome thakbe registration somoy
+
 
 
 

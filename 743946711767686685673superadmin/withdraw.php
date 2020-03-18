@@ -1,5 +1,18 @@
 <?php require_once('header.php'); ?>
 
+<!-- Withdraw turn On -->
+<?php 
+	if(isset($_POST['turnOn'])){
+		$statement = $pdo->prepare("UPDATE `tbl_withdraw_limit` SET `status`=? WHERE id=?");
+		$statement->execute(array(1, $_POST['id']));
+	}
+
+	if(isset($_POST['turnOff'])){
+		$statement = $pdo->prepare("UPDATE `tbl_withdraw_limit` SET `status`=? WHERE id=?");
+		$statement->execute(array(0, $_POST['id']));
+	}
+?>
+
 <section class="content-header">
 	<div class="content-header-left">
 		<h1>View Withdraw</h1>
@@ -21,6 +34,29 @@
 		<button type="button" class="btn btn-info" id="test" style="margin: 0px 8px;">Delete Selected</button>
 	</div>
 	<?php } ?>
+	<div class="content-header-right ml-3">
+	<?php 
+        $statement = "SELECT * FROM tbl_withdraw_limit ORDER BY id DESC LIMIT 1";
+        $stmt =  $pdo->query($statement);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $status = $row['status'];
+        	if($status == 0){
+    ?>
+		<form action="" method="post">
+			<input type="hidden" value="<?php echo $row['id']; ?>" name="id">
+			<button type="submit" name="turnOn" class="btn btn-danger btn-sm text-white">Withdraw status is off</button>
+		</form>
+	<?php 
+		}else{
+	?>
+		<form action="" method="post">
+			<input type="hidden" value="<?php echo $row['id']; ?>" name="id">
+			<button type="submit" name="turnOff" class="btn btn-success btn-sm text-white">Withdraw status is on</button>
+		</form>
+	<?php
+		}
+	?>
+	</div>
 	<div class="content-header-right ml-3">
 		<a href="withdraw-limit.php" class="btn btn-orange btn-sm text-white">Withdraw Limit</a>
 	</div>

@@ -86,6 +86,27 @@ if(isset($_SESSION['user'])){
                     <button onClick="window.location.reload();" type="button" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
                     <h4 class="modal-title" style="color: #D2D2D2" id="requestWithdrawModalLabel"> &nbsp;Request a withdraw</h4>
                 </div>
+
+                <?php 
+                    $statement = "SELECT * FROM tbl_withdraw_limit ORDER BY id DESC LIMIT 1";
+                    $stmt =  $pdo->query($statement);
+                    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $status = $row['status'];
+
+                    if($status == 0){
+                ?>
+                <br>
+                <br>
+                <br>
+                <h4 class="text-danger text-center py-2">Withdraw request has been blocked. For a limited time.</h4>
+                <br>
+                <br>
+                <br>
+                <?php 
+                    }else{
+
+                ?>
+
                 <form action="" method="post">
                     <div class="modal-body" style="padding: 2% !important">
                         <div role="form" class="register-form">
@@ -147,6 +168,9 @@ if(isset($_SESSION['user'])){
                     </div>
                 </div>
             </form>
+
+            <?php } ?>
+
         </div>
     </div>
 </div>

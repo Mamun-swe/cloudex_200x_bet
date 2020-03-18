@@ -28,6 +28,7 @@
 								<th width="180">Opening Date</th>
 								<th width="180">Status</th>
 								<th width="180" class="text-center">Members</th>
+								<th width="180" class="text-center">Balance</th>
 								<th width="180" class="text-center">Percenteg</th>
 								<th width="180" class="text-center">Profile</th>
 								<th width="100">Action</th>
@@ -45,7 +46,8 @@
 									tbl_club.club_status,
 									tbl_club.club_percenteg,
 									tbl_member.full_name,
-									tbl_club.club_name 
+									tbl_club.club_name,
+									tbl_club.balance
 								FROM 
 									tbl_club 
 								JOIN 
@@ -64,6 +66,7 @@
 									<td><?php echo $row['full_name']; ?></td>
 									<td><?php echo $row['open_date']; ?></td>
 									<td><?php if($row['club_status']==1) {echo 'Active';} else {echo 'Inactive';} ?></td>
+									
 									<td class="text-center">
 										<?php
 											$clubId = $row['club_id'];
@@ -74,6 +77,7 @@
 										?>
 									
 									</td>
+									<td class="text-center"><?php echo $row['balance']; ?></td>
 									<td class="text-center">
 										<?php 
 											if($row['club_percenteg'] > 0){
