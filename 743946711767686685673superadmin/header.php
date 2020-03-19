@@ -146,18 +146,11 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 					    </ul>
 					</li>
 
-					<li class="treeview <?php if( ($cur_page == 'game.php') || ($cur_page == 'game.php')) {echo 'active';} ?>">
-						<a href="#">
-							<i class="fa fa-hand-o-right"></i>
-							<span>Game List</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
+					
+					<li class="treeview <?php if( ($cur_page == 'game.php') ) {echo 'active';} ?>">
+						<a href="game.php">
+							<i class="fa fa-hand-o-right"></i><span>Game List</span>
 						</a>
-						<ul class="treeview-menu">
-							<li><a href="game.php"><i class="fa fa-circle-o"></i> Cricket</a></li>
-							<li><a href="game.php"><i class="fa fa-circle-o"></i> Football</a></li>
-						</ul>
 					</li>
 					
 					<li class="treeview <?php if( ($cur_page == 'finish-game.php') ) {echo 'active';} ?>">
@@ -196,6 +189,12 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 					<li class="treeview <?php if( ($cur_page == 'club.php')|| ($cur_page == 'club-add.php') || ($cur_page == 'club-edit.php') ) {echo 'active';} ?>">
 						<a href="club.php">
 							<i class="fa fa-hand-o-right"></i> <span>Club List</span>
+						</a>
+					</li>
+
+					<li class="treeview <?php if( ($cur_page == 'club-performance.php')) {echo 'active';} ?>">
+						<a href="club-performance.php">
+							<i class="fa fa-hand-o-right"></i> <span>Club Performance</span>
 						</a>
 					</li>
 
@@ -294,18 +293,10 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 				<?php 
 					if($_SESSION['admin']['role'] == 'Game') {
 				?>
-					<li class="treeview <?php if( ($cur_page == 'game.php') || ($cur_page == 'game.php')) {echo 'active';} ?>">
-						<a href="#">
-							<i class="fa fa-hand-o-right"></i>
-							<span>Game List</span>
-							<span class="pull-right-container">
-								<i class="fa fa-angle-left pull-right"></i>
-							</span>
+					<li class="treeview <?php if( ($cur_page == 'game.php') ) {echo 'active';} ?>">
+						<a href="game.php">
+							<i class="fa fa-hand-o-right"></i><span>Game List</span>
 						</a>
-						<ul class="treeview-menu">
-							<li><a href="game.php"><i class="fa fa-circle-o"></i> Cricket</a></li>
-							<li><a href="game.php"><i class="fa fa-circle-o"></i> Football</a></li>
-						</ul>
 					</li>
 				<?php
 					}
