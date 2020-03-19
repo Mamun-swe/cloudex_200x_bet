@@ -146,10 +146,18 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 					    </ul>
 					</li>
 
-					<li class="treeview <?php if( ($cur_page == 'game.php') || ($cur_page == 'game-add.php') || ($cur_page == 'game-edit.php') || ($cur_page == 'bet-option.php') || ($cur_page == 'bet-option-add.php') || ($cur_page == 'bet-option-edit.php') || ($cur_page == 'country.php') || ($cur_page == 'country-add.php') || ($cur_page == 'country-edit.php') || ($cur_page == 'shipping-cost.php') || ($cur_page == 'shipping-cost-edit.php') || ($cur_page == 'top-category.php') || ($cur_page == 'top-category-add.php') || ($cur_page == 'top-category-edit.php') || ($cur_page == 'mid-category.php') || ($cur_page == 'mid-category-add.php') || ($cur_page == 'mid-category-edit.php') || ($cur_page == 'end-category.php') || ($cur_page == 'end-category-add.php') || ($cur_page == 'end-category-edit.php') ) {echo 'active';} ?>">
-						<a href="game.php">
-							<i class="fa fa-hand-o-right"></i><span>Game List</span>
+					<li class="treeview <?php if( ($cur_page == 'game.php') || ($cur_page == 'game.php')) {echo 'active';} ?>">
+						<a href="#">
+							<i class="fa fa-hand-o-right"></i>
+							<span>Game List</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
 						</a>
+						<ul class="treeview-menu">
+							<li><a href="game.php"><i class="fa fa-circle-o"></i> Cricket</a></li>
+							<li><a href="game.php"><i class="fa fa-circle-o"></i> Football</a></li>
+						</ul>
 					</li>
 					
 					<li class="treeview <?php if( ($cur_page == 'finish-game.php') ) {echo 'active';} ?>">
@@ -278,6 +286,26 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 						<a href="withdraw.php">
 							<i class="fa fa-hand-o-right"></i> <span>Withdraw List</span>
 						</a>
+					</li>
+				<?php
+					}
+				?>
+
+				<?php 
+					if($_SESSION['admin']['role'] == 'Game') {
+				?>
+					<li class="treeview <?php if( ($cur_page == 'game.php') || ($cur_page == 'game.php')) {echo 'active';} ?>">
+						<a href="#">
+							<i class="fa fa-hand-o-right"></i>
+							<span>Game List</span>
+							<span class="pull-right-container">
+								<i class="fa fa-angle-left pull-right"></i>
+							</span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="game.php"><i class="fa fa-circle-o"></i> Cricket</a></li>
+							<li><a href="game.php"><i class="fa fa-circle-o"></i> Football</a></li>
+						</ul>
 					</li>
 				<?php
 					}

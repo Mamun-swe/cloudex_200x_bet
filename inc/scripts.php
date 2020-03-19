@@ -128,9 +128,11 @@
       }
     </script>
     <script>
-      function check() {
-        document.getElementById("req-deposit-to").value=document.getElementById("sel1").value;
-      } 
+      $('#sel1').change(function() {
+        document.getElementById("req-deposit-to").value = document.getElementById("sel1").value;
+        var method_val = $('#sel1 option[value="' + $(this).val() + '"]').data('method');
+        document.getElementById("method").value = method_val;
+      });
     </script>
     <script>
 
@@ -239,8 +241,7 @@
 
             function depositPost() {
               var data = {
-                // sellist1: document.getElementById("sel1").value,
-                sellist1: 'Bkash Personal',
+                sellist1: document.getElementById("method").value,
                 to: document.getElementById("req-deposit-to").value,
                 amount: document.getElementById("req-deposit-amount").value,
                 from: document.getElementById("req-deposit-from").value,

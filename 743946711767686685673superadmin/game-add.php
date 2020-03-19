@@ -39,10 +39,10 @@ if(isset($_POST['form1'])) {
         $error_message .= "You must enter game time<br>";
 	}
 	
-	if(empty($_POST['status'])) {
-        $valid = 0;
-        $error_message .= "Please Select Game Status<br>";
-    }
+	// if(empty($_POST['status'])) {
+    //     $valid = 0;
+    //     $error_message .= "Please Select Game Status<br>";
+    // }
     
     if($valid == 1) {
 
@@ -69,7 +69,7 @@ if(isset($_POST['form1'])) {
 										$_POST['day'],
 										$_POST['time'],
 										$update,
-										$_POST['status']
+										'8'
 									));
 
 	
@@ -162,7 +162,7 @@ if(isset($_POST['form1'])) {
 								<input type="text" name="time" class="form-control">
 							</div>
 						</div>	
-						<div class="form-group">
+						<!-- <div class="form-group">
         					<label for="" class="col-sm-3 control-label">Select Game Status</label>
         					<div class="col-sm-4">
         						<select name="status" class="form-control select2">
@@ -171,7 +171,7 @@ if(isset($_POST['form1'])) {
 										<option value="2">UPCOMING</option>
         						</select>
         					</div>
-        				</div>
+        				</div> -->
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label"></label>
 							<div class="col-sm-6">

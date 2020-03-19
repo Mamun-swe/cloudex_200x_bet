@@ -16,26 +16,27 @@
                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label style="text-align: left;width: 100%;">Method<span style="color:#DD4F43;">*</span></label>
-                                        <select class="form-control" id="sel1" name="sellist1" onChange="check();">
+                                        <select class="form-control" id="sel1" name="sellist1">
                                             <option value="">Select Method</option>
                                             <?php
                                             foreach ($result1 as $row1) {
                                                 ?>
-                                                <option value="<?php echo $row1['number']; ?>"><?php echo $row1['method']; ?></option>
+                                                <option value="<?php echo $row1['number']; ?>" data-method="<?php echo $row1['method']; ?>"><?php echo $row1['method']; ?></option>
                                                 <?php
                                             }
                                             ?>
                                         </select>
                                     </div>
                                 </div>
+
+                                <input type="hidden" class="form-control" id="method">
+                                
                                 <div class="col-xs-12 col-sm-6 col-md-6">
                                     <div class="form-group">
                                         <label style="text-align: left;width: 100%;">To <span style="color:#DD4F43;">*</span></label>
                                         
                                         <input type="text" class="form-control bg-light-gray" id="req-deposit-to"
                                         name="to" placeholder="To" required="required" disabled>
-                                        
-                                        
                                     </div>
                                 </div>
                             </div>

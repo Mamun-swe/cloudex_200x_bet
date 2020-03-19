@@ -48,6 +48,9 @@
 								<th width="180">Game Time</th>
 								<th width="180">Game Update</th>
 								<th width="180">Betting Options</th>
+								<?php 
+									if($_SESSION['admin']['role'] == 'Super admin') {
+								?>
 								<th width="180">Status</th>
 								<th width="100">Action</th>
 								<th width="100">Action</th>
@@ -55,83 +58,205 @@
 								<th width="100">Action</th>
 								<th width="50">Action</th>
 								<th width="50">Action</th>
+								<?php 
+									}
+									if($_SESSION['admin']['role'] == 'Game'){	
+								?>
+								<th width="50">Transfer to admin</th>
+								<?php } ?>
 							</tr>
 						</thead>
 						<tbody>
 							<?php
-							$i=0;
-							$num="5";
-							$statement = $pdo->prepare("SELECT * FROM tbl_game
-													WHERE game_status != ?");
-							$statement->execute(array($num));
-							$result = $statement->fetchAll(PDO::FETCH_ASSOC);						
-							foreach ($result as $row) {
-								$i++;
-								?>
-								<tr class="<?php if($row['game_status']==1) {echo 'bg-g';}else if($row['game_status']==2) {echo 'bg-r';} else {echo 'bg-a';} ?>">
-									<td>
-										<input type="checkbox" class="form-check-input" value="<?php echo $row['game_id']; ?>">
-									</td>
-									
-									<td><?php echo $i; ?></td>
-									<td><?php echo $row['type']; ?></td>
-									<td><?php echo $row['game_name']; ?></td>
-									
-									<td><?php echo $row['desh1'].'<span style="color:red;"> VS </span>'. $row['desh2']; ?></td>
-									<td><?php echo $row['tournament']; ?></td>
-									<td><?php echo $row['date']; ?></td>
-									<td><?php echo $row['time']; ?></td>
-									<td>
-									    <?php echo $row['game_update']; ?>
-									    <br>
-									    <a href="game-add-update.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Add Update</a>
-								    </td>
-									<td>
-	                                    <a href="bet-option.php?id=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">BETTING OPTIONS</a>
-	                                </td>
-									<td><?php if($row['game_status']==1) {echo 'LIVE';} else if($row['game_status']==2) {echo 'UPCOMING';} else if($row['game_status']==5) {echo 'GAME FINISHED';} else if($row['game_status']=="Hidden") {echo 'HIDDEN';} else if($row['game_status']==0) {echo 'PAUSED';} ?></td>
-									<td>
-									    <?php 
-									        if(($row['game_status']==1) OR  ($row['game_status']==2)){
-								        ?>
-							                    <a href="game-pause.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Pause Game</a>
-							            <?php
-									        }
-							                else{
-						                ?>
-							                    <a href="game-start.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Start Game</a>
-							                <?php
-					                        }
-							            ?>
-						            </td>
-						            <td>
-							            <a href="game-finish.php?id=<?php echo $row['game_id']; ?>" class="btn btn-danger btn-xs">Game Finished</a>
-						            </td>
-						            <td>
-							            <?php 
-									        if(($row['game_status']=="Hidden")){
-								        ?>
-							                    <a href="game-live.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Go Live</a>
-							            <?php
-									        }
-							                else{
-						                ?>
-							                    <a href="game-hide.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Hide Game</a>
-							                <?php
-					                        }
-							            ?>
-						            </td>
-									<td>
-							            <a href="game-change-status.php?id=<?php echo $row['game_id']; ?>" class="btn btn-success btn-xs">Change Status</a>
-						            </td>
-        	                        <td>
-	                                    <a href="game-edit.php?id=<?php echo $row['game_id']; ?>" class="btn btn-primary btn-xs">Edit</a>
-	                                </td>
-	                                <!-- <td>
-	                                    <a href="#" class="btn btn-danger btn-xs" data-href="game-delete.php?id=<?php echo $row['game_id']; ?>" data-toggle="modal" data-target="#confirm-delete">Delete</a>
-	                                </td> -->
-								</tr>
-								<?php
+							if($_SESSION['admin']['role'] == 'Game'){
+								$i=0;
+								$num="8";
+								$type= "Cricket";
+								$statement = $pdo->prepare("SELECT * FROM tbl_game WHERE game_status = ? AND type = ?");
+								$statement->execute(array($num, $type));
+								$result = $statement->fetchAll(PDO::FETCH_ASSOC);						
+								foreach ($result as $row) {
+									$i++;
+									?>
+									<tr class="<?php if($row['game_status']==1) {echo 'bg-g';}else if($row['game_status']==2) {echo 'bg-r';} else {echo 'bg-a';} ?>">
+										<td>
+											<input type="checkbox" class="form-check-input" value="<?php echo $row['game_id']; ?>">
+										</td>
+										
+										<td><?php echo $i; ?></td>
+										<td><?php echo $row['type']; ?></td>
+										<td><?php echo $row['game_name']; ?></td>
+										
+										<td><?php echo $row['desh1'].'<span style="color:red;"> VS </span>'. $row['desh2']; ?></td>
+										<td><?php echo $row['tournament']; ?></td>
+										<td><?php echo $row['date']; ?></td>
+										<td><?php echo $row['time']; ?></td>
+
+										<?php 
+											if($_SESSION['admin']['role'] == 'Super admin') {
+										?>
+										<td>
+											<?php echo $row['game_update']; ?>
+											<br>
+											<a href="game-add-update.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Add Update</a>
+										</td>
+										<?php } ?>
+
+
+										<td>
+											<a href="bet-option.php?id=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">BETTING OPTIONS</a>
+										</td>
+
+										<?php 
+											if($_SESSION['admin']['role'] == 'Super admin') {
+										?>
+										<td><?php if($row['game_status']==1) {echo 'LIVE';} else if($row['game_status']==2) {echo 'UPCOMING';} else if($row['game_status']==5) {echo 'GAME FINISHED';} else if($row['game_status']=="Hidden") {echo 'HIDDEN';} else if($row['game_status']==0) {echo 'PAUSED';} ?></td>
+										<td>
+											<?php 
+												if(($row['game_status']==1) OR  ($row['game_status']==2)){
+											?>
+													<a href="game-pause.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Pause Game</a>
+											<?php
+												}
+												else{
+											?>
+													<a href="game-start.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Start Game</a>
+												<?php
+												}
+											?>
+										</td>
+										<td>
+											<a href="game-finish.php?id=<?php echo $row['game_id']; ?>" class="btn btn-danger btn-xs">Game Finished</a>
+										</td>
+										<td>
+											<?php 
+												if(($row['game_status']=="Hidden")){
+											?>
+													<a href="game-live.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Go Live</a>
+											<?php
+												}
+												else{
+											?>
+													<a href="game-hide.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Hide Game</a>
+												<?php
+												}
+											?>
+										</td>
+										<td>
+											<a href="game-change-status.php?id=<?php echo $row['game_id']; ?>" class="btn btn-success btn-xs">Change Status</a>
+										</td>
+										<td>
+											<a href="game-edit.php?id=<?php echo $row['game_id']; ?>" class="btn btn-primary btn-xs">Edit</a>
+										</td>
+										<?php 
+											}  
+											if($_SESSION['admin']['role'] == 'Game'){	
+										?>
+										<td>
+											<form action="" method="post">
+												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
+												<button type="submit" name="transfer" class="btn btn-info btn-xs">Transfer</button>
+											</form>
+											<?php 
+												if(isset($_POST['transfer'])){
+													$transfer_statement = $pdo->prepare("UPDATE tbl_game SET game_status=? WHERE game_id=?");
+													$transfer_statement->execute(array('Hidden', $_POST['game_id']));
+													header('location: game.php');
+												}
+											?>
+										</td>
+										<?php } ?>
+									</tr>
+									<?php
+								}
+							}
+							// Show game list only for super admin
+							if($_SESSION['admin']['role'] == 'Super admin'){
+								$i=0;
+								$num="8";
+								$type= "Cricket";
+								$statement = $pdo->prepare("SELECT * FROM tbl_game WHERE game_status != ? AND type = ?");
+								$statement->execute(array($num, $type));
+								$result = $statement->fetchAll(PDO::FETCH_ASSOC);						
+								foreach ($result as $row) {
+									$i++;
+									?>
+									<tr class="<?php if($row['game_status']==1) {echo 'bg-g';}else if($row['game_status']==2) {echo 'bg-r';} else {echo 'bg-a';} ?>">
+										<td>
+											<input type="checkbox" class="form-check-input" value="<?php echo $row['game_id']; ?>">
+										</td>
+										
+										<td><?php echo $i; ?></td>
+										<td><?php echo $row['type']; ?></td>
+										<td><?php echo $row['game_name']; ?></td>
+										
+										<td><?php echo $row['desh1'].'<span style="color:red;"> VS </span>'. $row['desh2']; ?></td>
+										<td><?php echo $row['tournament']; ?></td>
+										<td><?php echo $row['date']; ?></td>
+										<td><?php echo $row['time']; ?></td>
+
+										<?php 
+											if($_SESSION['admin']['role'] == 'Super admin') {
+										?>
+										<td>
+											<?php echo $row['game_update']; ?>
+											<br>
+											<a href="game-add-update.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Add Update</a>
+										</td>
+										<?php } ?>
+
+
+										<td>
+											<a href="bet-option.php?id=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">BETTING OPTIONS</a>
+										</td>
+
+										<?php 
+											if($_SESSION['admin']['role'] == 'Super admin') {
+										?>
+										<td><?php if($row['game_status']==1) {echo 'LIVE';} else if($row['game_status']==2) {echo 'UPCOMING';} else if($row['game_status']==5) {echo 'GAME FINISHED';} else if($row['game_status']=="Hidden") {echo 'HIDDEN';} else if($row['game_status']==0) {echo 'PAUSED';} ?></td>
+										<td>
+											<?php 
+												if(($row['game_status']==1) OR  ($row['game_status']==2)){
+											?>
+													<a href="game-pause.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Pause Game</a>
+											<?php
+												}
+												else{
+											?>
+													<a href="game-start.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Start Game</a>
+												<?php
+												}
+											?>
+										</td>
+										<td>
+											<a href="game-finish.php?id=<?php echo $row['game_id']; ?>" class="btn btn-danger btn-xs">Game Finished</a>
+										</td>
+										<td>
+											<?php 
+												if(($row['game_status']=="Hidden")){
+											?>
+													<a href="game-live.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Go Live</a>
+											<?php
+												}
+												else{
+											?>
+													<a href="game-hide.php?id=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Hide Game</a>
+												<?php
+												}
+											?>
+										</td>
+										<td>
+											<a href="game-change-status.php?id=<?php echo $row['game_id']; ?>" class="btn btn-success btn-xs">Change Status</a>
+										</td>
+										<td>
+											<a href="game-edit.php?id=<?php echo $row['game_id']; ?>" class="btn btn-primary btn-xs">Edit</a>
+										</td>
+										<?php 
+											} 	
+										?>
+									</tr>
+									<?php
+								}
 							}
 							?>							
 						</tbody>

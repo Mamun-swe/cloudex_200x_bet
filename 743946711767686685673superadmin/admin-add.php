@@ -98,6 +98,7 @@ if(isset($_POST['form1'])) {
                             <option value="Super admin">Super admin</option>
                             <option value="Deposite">Deposite admin</option>
                             <option value="Withdraw">Withdraw admin</option>
+                            <option value="Game">Game add manager</option>
                         </select>
                     </div>
                 </div>
