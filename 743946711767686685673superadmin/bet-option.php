@@ -45,7 +45,6 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 								<th width="30">Status</th>
 								<th width="150">Action</th>
 								<th width="100">Action</th>
-								<th width="50">Action</th>
 								<th width="50">Action</th> 
 							</tr>
 						</thead>
@@ -75,21 +74,86 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 									</td>
 									<td><?php if($row['stake_status']==1) {echo 'Active';} else if($row['stake_status']==2) {echo 'WIN';} else if($row['stake_status']==3) {echo 'LOSS';} else {echo 'Inactive';} ?></td>
 									<td>
-										<p><a href="bet-win.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-success btn-xs">WIN</a>
-											<b>/</b></p>
-											<p><a href="bet-loss.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-danger btn-xs">LOSS</a>
-												<b>/</b></p>
-												<p><a href="bet-win-return.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Admin Return</a></p>
-											</td>
+									
+										<?php 
+											if($_SESSION['admin']['role'] == 'Live'){
+											if($row['stake_status'] == 2){
+										?>
+
+											<form action="bet-win.php" method="post">
+												<input type="hidden" value="win" name="status">
+												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
+												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
+												<button type="submit" name="submit_win" class="btn btn-success btn-xs">WIN</button>
+											</form>
+
+											<a href="bet-win-return.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Admin Return</a>
+
+										<?php 
+											}elseif($row['stake_status'] == 3){
+										?>
+
+											<form action="bet-win.php" method="post">
+												<input type="hidden" value="loss" name="status">
+												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
+												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
+												<button type="submit" name="submit_win" class="btn btn-danger btn-xs">LOSS</button>
+											</form>
+
+											<a href="bet-win-return.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Admin Return</a>
+
+										<?php 
+											}else{
+										?>
+
+											<form action="bet-win.php" method="post">
+												<input type="hidden" value="win" name="status">
+												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
+												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
+												<button type="submit" name="submit_win" class="btn btn-success btn-xs">WIN</button>
+											</form>
+
+											<form action="bet-win.php" method="post">
+												<input type="hidden" value="loss" name="status">
+												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
+												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
+												<button type="submit" name="submit_win" class="btn btn-danger btn-xs">LOSS</button>
+											</form>
+											
+											<a href="bet-win-return.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Admin Return</a>
+										<?php 
+											} 
+										}
+										if($_SESSION['admin']['role'] == 'Super admin'){
+										?>
+											<form action="bet-win.php" method="post">
+												<input type="hidden" value="win" name="status">
+												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
+												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
+												<button type="submit" name="submit_win" class="btn btn-success btn-xs">WIN</button>
+											</form>
+
+											<form action="bet-win.php" method="post">
+												<input type="hidden" value="loss" name="status">
+												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
+												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
+												<button type="submit" name="submit_win" class="btn btn-danger btn-xs">LOSS</button>
+											</form>
+											
+											<a href="bet-win-return.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Admin Return</a>
+
+										<?php 
+											}	
+										?>
+										<!-- <a href="bet-loss.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-danger btn-xs">LOSS</a> -->
+										
+									</td>
 											<td>
 												<a href="bet-status-change.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-success btn-xs">Change Status</a>
 											</td>
 											<td>
 												<a href="bet-option-edit.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Edit</a>
 											</td>
-											<!-- <td>
-												<a href="#" class="btn btn-danger btn-xs" data-href="bet-option-delete.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" data-toggle="modal" data-target="#confirm-delete">Delete</a>
-											</td> -->
 										</tr>
 										<?php
 									}

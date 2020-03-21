@@ -72,8 +72,7 @@ $state = $pdo->prepare("SELECT *
 $state->execute(array($hide));
 $results = $state->fetchAll(PDO::FETCH_ASSOC);
 
-$statement4 = $pdo->prepare("SELECT *
-	FROM tbl_club");
+$statement4 = $pdo->prepare("SELECT * FROM tbl_club ORDER BY club_rank ASC");
 $statement4->execute();
 $result4 = $statement4->fetchAll(PDO::FETCH_ASSOC);
 foreach ($result4 as $row4) {

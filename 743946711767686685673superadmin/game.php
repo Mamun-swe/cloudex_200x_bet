@@ -171,7 +171,7 @@
 								}
 							}
 							// Show game list only for super admin
-							if($_SESSION['admin']['role'] == 'Super admin'){
+							if($_SESSION['admin']['role'] == 'Super admin' || $_SESSION['admin']['role'] == 'Live'){
 								$i=0;
 								$num="8";
 								$type= "Cricket";

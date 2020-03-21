@@ -18,6 +18,7 @@ if(isset($_POST['form1'])) {
 		$balance=0;
 		$percenteg='3';
 		$date=date("d/m/Y");
+		$rank = rand(10,1000);
 		//Saving data into the main table tbl_product
 	
 		$statement = $pdo->prepare("INSERT INTO `tbl_club`(
@@ -26,8 +27,9 @@ if(isset($_POST['form1'])) {
 									    `open_date`, 
 									    `club_status`,
 									    `balance`,
-										`club_percenteg`
-									) VALUES (?,?,?,?,?,?)");
+										`club_percenteg`,
+										`club_rank`
+									) VALUES (?,?,?,?,?,?,?)");
 
 		$statement->execute(array(
 			$_POST['name'],
@@ -35,7 +37,8 @@ if(isset($_POST['form1'])) {
 			$date,
 			$valid,
 			$balance,
-			$percenteg
+			$percenteg,
+			$rank
 		));
 
 	

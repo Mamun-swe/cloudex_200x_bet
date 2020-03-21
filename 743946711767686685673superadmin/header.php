@@ -300,6 +300,15 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 					</li>
 				<?php
 					}
+					if($_SESSION['admin']['role'] == 'Live') {
+				?>
+					<li class="treeview <?php if( ($cur_page == 'game.php') ) {echo 'active';} ?>">
+						<a href="game.php">
+							<i class="fa fa-hand-o-right"></i><span>Game List</span>
+						</a>
+					</li>
+				<?php
+					}
 				?>
 				
 			</ul>

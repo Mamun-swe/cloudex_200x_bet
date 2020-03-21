@@ -1,6 +1,6 @@
   *** 1.   User Panel  (click korle sorasori oi id te dhuke jabe same as whm to cPanel)
   *** 2.   club panel  (protita club er pashe koto jon user ache eta show korbe and action thakbe click korle sorasori club e login jye jabe)
-   3.   club permofance list admin panel theke manusally deya jabe eta website e show korbe..
+  *** 3.   club permofance list admin panel theke manusally deya jabe eta website e show korbe..
   ***4.   club e edit option e club perchantige change korar option thakbe
   *** 5.   games list theke game delete option thakbena. and betting  option thkew delete option tule dite hbe
   *** 6.   game lsit theke edit option e update e kaj kore na etay solved korte hobe
@@ -9,7 +9,7 @@
   *** 10.  bit list e 2 ta option thakbe ekta hocche mark sevarle arekta hocche all evabe super admin delete korte parben.
   *** 11.  finished games list ew number 10 er moto kaj hbe
   *** 12.  diposit list e number 11.10 er moto kaj korbe. and diposit er roll manager edit and delete korte parben na
-   13.  payment option e bkash select kore jodi kew diposit kore thle admin er kase bkash hisebe ase..kintu jodi admin theke 2 ta option deya thake thle thik moto kaj kore na
+  *** 13.  payment option e bkash select kore jodi kew diposit kore thle admin er kase bkash hisebe ase..kintu jodi admin theke 2 ta option deya thake thle thik moto kaj kore na
   *** 14.  limit(windraw / diposit) 
    * It's not possible in this language 
 	{{{{ 15.  dipost er je role thakbe kew dipodit korle se alert er ekta sound pabe.. }}}
@@ -24,7 +24,7 @@
    24 . same 1st over run ... odded and even... 
   ////// 25 . trash option e asbe... finisdhed games lished. diposit. widraw. User . club. bet history. diposit Number.
   ///// 26 . trash e arekta option thakbe.. mark seravel all delete,,
-   27 . Transaction History user ra akk transactino history dekhte parbe. 
+  *** 27 . Transaction History user ra akk transactino history dekhte parbe. 
    28 . Live Score... 
    29 . live khela upload deyar somoy games manager select kore dite parbe je eta te heading show korbe kina .,. 
   *** 30 . Account Theke User account e arekta option add hobe seta hocche club found
@@ -45,7 +45,7 @@
        4. club visit profile hobe,
       *** 5. Game add manager. 2 type of game in side-menu Football + cricket
       *** 6. game manager game add korar por transfer to game list nam e a  button thakbe sekhane clivk korle game list e hide obostay cole jabe
-       7. club perfomance admin theke select kore dite parbe jare prothome dibe se rothome thakbe registration somoy
+      *** 7. club perfomance admin theke select kore dite parbe jare prothome dibe se rothome thakbe registration somoy
 
 
 
