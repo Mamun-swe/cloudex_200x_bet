@@ -44,8 +44,10 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 								<th width="100">Sell Price(Per Tk)</th>
 								<th width="30">Status</th>
 								<th width="150">Action</th>
+								<?php if($_SESSION['admin']['role'] == 'Super admin'){ ?>
 								<th width="100">Action</th>
 								<th width="50">Action</th> 
+								<?php } ?>
 							</tr>
 						</thead>
 						<tbody>
@@ -70,7 +72,9 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 									<td>
 										<?php echo $row['sell_price']; ?>
 										<br><br>
+										<?php if($_SESSION['admin']['role'] == 'Super admin'){ ?>
 										<a href="bet-price-change.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-warning btn-xs">Change Price</a>
+										<?php } ?>
 									</td>
 									<td><?php if($row['stake_status']==1) {echo 'Active';} else if($row['stake_status']==2) {echo 'WIN';} else if($row['stake_status']==3) {echo 'LOSS';} else {echo 'Inactive';} ?></td>
 									<td>
@@ -79,29 +83,12 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 											if($_SESSION['admin']['role'] == 'Live'){
 											if($row['stake_status'] == 2){
 										?>
-
-											<form action="bet-win.php" method="post">
-												<input type="hidden" value="win" name="status">
-												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
-												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
-												<button type="submit" name="submit_win" class="btn btn-success btn-xs">WIN</button>
-											</form>
-
 											<a href="bet-win-return.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Admin Return</a>
 
 										<?php 
 											}elseif($row['stake_status'] == 3){
 										?>
-
-											<form action="bet-win.php" method="post">
-												<input type="hidden" value="loss" name="status">
-												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
-												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
-												<button type="submit" name="submit_win" class="btn btn-danger btn-xs">LOSS</button>
-											</form>
-
 											<a href="bet-win-return.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Admin Return</a>
-
 										<?php 
 											}else{
 										?>
@@ -144,8 +131,8 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 
 										<?php 
 											}	
+											if($_SESSION['admin']['role'] == 'Super admin'){
 										?>
-										<!-- <a href="bet-loss.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-danger btn-xs">LOSS</a> -->
 										
 									</td>
 											<td>
@@ -157,6 +144,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 										</tr>
 										<?php
 									}
+								}
 									?>							
 								</tbody>
 							</table>

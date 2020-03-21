@@ -124,6 +124,11 @@ foreach ($result20 as $row20) {
 										Change Password
 									</a>
 								</li>
+								<li>
+									<a href="#" class="list-group-item text-center list-item" data-toggle="modal" data-target="#change-password-modal">
+										Balance Transfer
+									</a>
+								</li>
 							</ul>
 						</div>
 						<div class="bhoechie-tab">

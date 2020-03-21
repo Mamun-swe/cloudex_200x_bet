@@ -20,10 +20,14 @@
 	<div class="content-header-right">
 		<button type="button" class="btn btn-info" id="test" style="margin: 0px 8px;">Delete Selected</button>
 	</div>
-	<?php } ?>
+	<?php 
+	}
+	if($_SESSION['admin']['role'] == 'Super admin' || $_SESSION['admin']['role'] == 'Game') {
+	?>
 	<div class="content-header-right">
 		<a href="game-add.php" class="btn btn-primary btn-sm">Add Game</a>
 	</div>
+	<?php } ?>
 </section>
 
 <section class="content">
