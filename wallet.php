@@ -125,7 +125,7 @@ foreach ($result20 as $row20) {
 									</a>
 								</li>
 								<li>
-									<a href="#" class="list-group-item text-center list-item" data-toggle="modal" data-target="#change-password-modal">
+									<a href="#" class="list-group-item text-center list-item" data-toggle="modal" data-target="#balance-transfer-modal">
 										Balance Transfer
 									</a>
 								</li>
