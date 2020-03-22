@@ -450,12 +450,16 @@ $(document).ready(function() {
             type: "post",
             data: data,
             success: function(a) {
-                var respData3 = JSON.parse(a);
-                console.log(respData3);
+                var response = JSON.parse(a);
+                
+                if(response.low){
+                    $('#transfer_status').html(response.low);
+                }
+                if(response.sucess){
+                    $('#transfer_status').html(response.sucess);
+                }
             }
         });
-
-        // console.log(data);
     })
 });
 </script>

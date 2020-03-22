@@ -269,7 +269,9 @@ if(isset($_SESSION['user'])){
                 <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal"
                     style="color: #ffffff">×</button>
                 <h4 class="modal-title" style="color: #D2D2D2"> Transfer Balance</h4>
+                
             </div>
+            <div id="transfer_status" style="padding: 10px 15px; font-size: 17px;"></div>
             <form action="" method="post">
                 <div class="modal-body" style="padding: 2% !important">
                     <div class="">

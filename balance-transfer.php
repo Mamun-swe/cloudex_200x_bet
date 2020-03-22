@@ -1,29 +1,27 @@
 <?php
-
     if(isset($_POST)){
         include('config.php');
-
-        $statement = "SELECT credit FROM tbl_member WHERE user_id=?";
+        $statement = $pdo->prepare("SELECT * FROM tbl_member WHERE user_id=?");
         $statement->execute(array($_POST['sender']));
-        $stmt =  $pdo->query($statement);
-        $result290 = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    foreach ($result290 as $row290){
-        $credit = $row['credit'];
-        $response = $credit;
-        // if($credit > $_POST['amount']){
-        //     $response ='Your is low ...';
-        // }else{
-        //     $response ='continue ...';
-        // }
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $row){
+            $credit = $row['credit'];
+            if($credit < $_POST['amount']){
+                $response=array(
+                    "low" => "Your current balance is low ..."
+                );
+            }else{
+                $statement_balance_minus = $pdo->prepare("UPDATE tbl_member SET credit = credit - ? WHERE user_id = ? ");
+                $statement_balance_minus->execute(array($_POST['amount'], $_POST['sender']));
 
-    }
-        
+                $statement_balance_plus = $pdo->prepare("UPDATE tbl_member SET credit = credit + ? WHERE user_id = ? ");
+                $statement_balance_plus->execute(array($_POST['amount'], $_POST['reciver']));
 
-        
+                $response=array(
+                    "sucess" => "Balance transfer success ..."
+                );
+            }
+        }
         echo json_encode($response);
     }
-
-    
-
-
 ?>
