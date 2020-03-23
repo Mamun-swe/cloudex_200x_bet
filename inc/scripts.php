@@ -67,14 +67,6 @@ $('.amountBtn').click(function() {
 </script>
 
 
-
-
-
-
-
-
-
-
 <script>
 $(document).ready(function() {
     $('.itemSlider').owlCarousel({
@@ -167,35 +159,43 @@ $("#bet").on("change keypress input", function() {
 // document.getElementById('betRequestModalLabel').innerHTML;
 // }
 
-function bet(bet_id) {
-    $.ajax({
-        url: "bet.php",
-        type: "post",
-        dataType: "text",
-        data: {
-            stake_id: bet_id
-        },
-        success: function(a) {
-            var respData1 = JSON.parse(a);
+function bet(stack_id, game_id) {
+    var tab = localStorage.getItem('tab');
+    if(tab == 1){
+        $.ajax({
+            url: "bet.php",
+            type: "post",
+            dataType: "text",
+            data: {
+                stake_id: stack_id
+            },
+            success: function(a) {
+                var respData1 = JSON.parse(a);
+                if (respData1.fucker === 'Active') {
 
-
-            if (respData1.fucker === 'Active') {
-
-                $('#error_data').html(respData1.error);
-                $('#first_data').html(respData1.first);
-                $('#second_data').html(respData1.second);
-                $('#possible').html(respData1.possible);
-                $('#asshole').html(respData1.possible1);
-                $('#button_data').html(respData1.button);
-                $('#betRequestModal').modal('show');
-                $('#possible').trigger('change');
-                $('#rate').trigger('change');
-                $('#betRequestModal').modal('show');
-            } else {
-                location.reload();
+                    $('#error_data').html(respData1.error);
+                    $('#first_data').html(respData1.first);
+                    $('#second_data').html(respData1.second);
+                    $('#possible').html(respData1.possible);
+                    $('#asshole').html(respData1.possible1);
+                    $('#button_data').html(respData1.button);
+                    $('#betRequestModal').modal('show');
+                    $('#possible').trigger('change');
+                    $('#rate').trigger('change');
+                    $('#betRequestModal').modal('show');
+                } else {
+                    location.reload();
+                }
             }
-        }
-    });
+        });
+    }
+
+    if(tab == 2){
+        console.log(stack_id + ' ' + game_id);
+    }
+
+    
+
 }
 </script>
 <script>
@@ -462,6 +462,41 @@ $(document).ready(function() {
         });
     })
 });
+
+
+// Bet Modal
+$(document).ready(function() {
+    // Single Bet 
+    localStorage.setItem('tab', 1);
+    $('#single-bet-trigger').click(function(){
+        $('#single-bet-trigger').addClass('current');
+        $('#multi-bet-trigger').removeClass('current');
+        $('#single-tab').addClass('current-tab');
+        $('#multi-tab').removeClass('current-tab');
+
+        localStorage.setItem('tab', 1);
+    });
+
+
+    // Multi Bet
+    $('#multi-bet-trigger').click(function(){
+        $('#single-bet-trigger').removeClass('current');
+        $('#multi-bet-trigger').addClass('current');
+        $('#multi-tab').addClass('current-tab');
+        $('#single-tab').removeClass('current-tab');
+
+        localStorage.setItem('tab', 2);
+    });
+
+    $('#goMultiBet').click(function(){
+        $('#betRequestModal').modal('hide');
+    });
+
+});
+
+
+
+
 </script>
 </body>
 

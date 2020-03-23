@@ -92,21 +92,23 @@ foreach ($results as $rows) {
                   </div>
                   <div id="two<?php echo $rows['game_id'].$j;?>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="">
                     <div class="panel-body" style="padding: 0px 0px;background: #5F5F5F;">
-                      <div class="betOptionWrap">           <?php
-                      $state2 = $pdo->prepare("SELECT *
-                        FROM tbl_stake WHERE stake_name=? AND game_id=? AND stake_status=?");
-                      $state2->execute(array($rows1['stake_name'],$rows['game_id'],$s));
-                      $results2 = $state2->fetchAll(PDO::FETCH_ASSOC);
-                      foreach ($results2 as $rows2) {
-                        if(!isset($_SESSION['user'])){
+                      <div class="betOptionWrap">           
+                        <?php
+                          $state2 = $pdo->prepare("SELECT * FROM tbl_stake WHERE stake_name=? AND game_id=? AND stake_status=?");
+                          $state2->execute(array($rows1['stake_name'],$rows['game_id'],$s));
+                          $results2 = $state2->fetchAll(PDO::FETCH_ASSOC);
+                          foreach ($results2 as $rows2) {
+                            if(!isset($_SESSION['user'])){
                           ?>                                  
                           <div class="place-bet btn btn-default btn-sm data-show buttonrate active-question" style="cursor: pointer" data-toggle="modal" data-target="#loginModal">
                             <span class="text"><?php echo $rows2['bet_name']; ?> </span> <span style="color:#1C69C2;"><?php echo $rows2['rate']; ?></span>
                           </div>
                           <?php
                         }else{
-                          ?>                                             
-                          <div onclick="bet(<?php echo $rows2['stake_id']; ?>); return false;" class="place-bet btn btn-default btn-sm data-show buttonrate active-question" style="cursor: pointer">
+                          ?>    
+
+                          <div onclick="bet(
+                            <?php echo $rows2['stake_id'].','.$rows['game_id']; ?>); return false;" class="place-bet btn btn-default btn-sm data-show buttonrate active-question" style="cursor: pointer">
                             <span class="text"><?php echo $rows2['bet_name']; ?></span> <span style="color:#1C69C2 ;"><?php echo $rows2['rate']; ?></span>
                           </div>
                         <?php }} ?>                                           

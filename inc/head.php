@@ -27,6 +27,7 @@
 <link rel="stylesheet" href="css/newStyle.css">
 <link rel="stylesheet" href="css/custom.css">
 <link rel="stylesheet" href="css/select2.min.css">
+<link rel="stylesheet" href="css/modal.css">
 
 <script src="js/scriptse209.js?v=1.0.0"></script>
 
