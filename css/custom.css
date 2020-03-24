@@ -289,3 +289,48 @@
 
 
 
+.multi-bet-count-button{
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 99999;
+	border-radius: 0px;
+	padding: 10px 50px;
+	font-size: 17px;	
+	background: #1c69c2;
+	color: #fff;
+	transition: 0.3s;
+	display: none;
+}
+
+.multi-bet-count-button:hover{
+	color: #fff;
+	margin-bottom: 5px;
+}
+
+.multi-bet-count-button span{
+	background: #c04425;
+	padding: 5px;
+	border-radius: 16px;
+	margin-right: 8px;
+	font-size: 13px;
+}
+
+.modal #multi-bet-data ul{
+	margin-bottom: 25px;
+}
+
+.modal #multi-bet-data ul li{
+	list-style: none;
+}
+
+.modal #multi-bet-data .rate{
+	font-size: 16px;
+	padding: 2px 10px;
+	border: 1px solid brown;
+	border-radius: 16px;
+	margin-left: 8px;
+	background: #fff;
+	font-weight: bold;
+	color: #1c69c2;
+}

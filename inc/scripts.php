@@ -161,7 +161,9 @@ $("#bet").on("change keypress input", function() {
 
 function bet(stack_id, game_id) {
     var tab = localStorage.getItem('tab');
-    if(tab == 1){
+    if (tab == 1) {
+        localStorage.removeItem('gameIds');
+        localStorage.removeItem('games');
         $.ajax({
             url: "bet.php",
             type: "post",
@@ -172,7 +174,6 @@ function bet(stack_id, game_id) {
             success: function(a) {
                 var respData1 = JSON.parse(a);
                 if (respData1.fucker === 'Active') {
-
                     $('#error_data').html(respData1.error);
                     $('#first_data').html(respData1.first);
                     $('#second_data').html(respData1.second);
@@ -190,13 +191,116 @@ function bet(stack_id, game_id) {
         });
     }
 
-    if(tab == 2){
-        console.log(stack_id + ' ' + game_id);
+    if (tab == 2) {
+
+        var gamesArr = [];
+
+        ax = JSON.parse(localStorage.getItem('games')) || [];
+        var x = ax.find(element => element.game_id == game_id);
+
+        var betLength = ax.length;
+        $('#multi-bet-count-button').show();
+        $('#countBet').html(betLength);
+
+        if (x) {
+            $('#existModal').modal('show');
+        } else {
+            $.ajax({
+                url: "multi-bet.php",
+                type: "post",
+                dataType: "text",
+                data: {
+                    stake_id: stack_id
+                },
+                success: function(response) {
+                    var res = JSON.parse(response);
+                    var obj = {
+                        game_id: res[0].game_id,
+                        stake_id: res[0].stake_id,
+                        desh1: res[0].desh1,
+                        desh2: res[0].desh2,
+                        tournament: res[0].tournament,
+                        date: res[0].date,
+                        time: res[0].time,
+                        satke_name: res[0].stake_name,
+                        bet_name: res[0].bet_name,
+                        rate: res[0].rate
+                    }
+                    gamesArr = JSON.parse(localStorage.getItem('games')) || [];
+                    gamesArr.push(obj);
+                    localStorage.setItem('games', JSON.stringify(gamesArr));
+
+
+
+                    var betLength = gamesArr.length;
+                    $('#countBet').html(betLength);
+                }
+            });
+        }
+
+
+
+
+        
     }
 
-    
+
 
 }
+
+$('#multi-bet-count-button').click(function() {
+            $('#goMultiBet').hide();
+            $('#betRequestModal').modal('show');
+
+            var myArr = JSON.parse(localStorage.getItem('games')) || [];
+            $.each(myArr, function(index, value) {
+                $("#multi-bet-data").append(
+                    "<ul>" +
+                    "<li> " + value.desh1 + ' VS ' + value.desh2 + ' || ' + value.tournament +
+                    ' || ' + value.date +
+                    ' || ' + value.time + "</li>" +
+                    "<li>" + value.satke_name + "</li>" +
+                    "<li>" + value.bet_name + '<span class="rate">' + value.rate + '</span>' +
+                    "</li>" +
+                    "</ul>");
+            });
+        });
+
+
+
+// Bet Modal
+$(document).ready(function() {
+    // Single Bet 
+    localStorage.setItem('tab', 1);
+    $('#single-bet-trigger').click(function() {
+        $('#single-bet-trigger').addClass('current');
+        $('#multi-bet-trigger').removeClass('current');
+        $('#single-tab').addClass('current-tab');
+        $('#multi-tab').removeClass('current-tab');
+
+        localStorage.removeItem('gameIds');
+        localStorage.setItem('tab', 1);
+        $('#multi-bet-count-button').hide();
+        $('#multi-bet-data').hide();
+    });
+
+
+    // Multi Bet
+    $('#multi-bet-trigger').click(function() {
+        $('#single-bet-trigger').removeClass('current');
+        $('#multi-bet-trigger').addClass('current');
+        $('#multi-tab').addClass('current-tab');
+        $('#single-tab').removeClass('current-tab');
+
+        localStorage.setItem('tab', 2);
+        $('#goMultiBet').show();
+    });
+
+    $('#goMultiBet').click(function() {
+        $('#betRequestModal').modal('hide');
+    });
+
+});
 </script>
 <script>
 function betPost(bet_id) {
@@ -451,52 +555,17 @@ $(document).ready(function() {
             data: data,
             success: function(a) {
                 var response = JSON.parse(a);
-                
-                if(response.low){
+
+                if (response.low) {
                     $('#transfer_status').html(response.low);
                 }
-                if(response.sucess){
+                if (response.sucess) {
                     $('#transfer_status').html(response.sucess);
                 }
             }
         });
     })
 });
-
-
-// Bet Modal
-$(document).ready(function() {
-    // Single Bet 
-    localStorage.setItem('tab', 1);
-    $('#single-bet-trigger').click(function(){
-        $('#single-bet-trigger').addClass('current');
-        $('#multi-bet-trigger').removeClass('current');
-        $('#single-tab').addClass('current-tab');
-        $('#multi-tab').removeClass('current-tab');
-
-        localStorage.setItem('tab', 1);
-    });
-
-
-    // Multi Bet
-    $('#multi-bet-trigger').click(function(){
-        $('#single-bet-trigger').removeClass('current');
-        $('#multi-bet-trigger').addClass('current');
-        $('#multi-tab').addClass('current-tab');
-        $('#single-tab').removeClass('current-tab');
-
-        localStorage.setItem('tab', 2);
-    });
-
-    $('#goMultiBet').click(function(){
-        $('#betRequestModal').modal('hide');
-    });
-
-});
-
-
-
-
 </script>
 </body>
 

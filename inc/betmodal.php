@@ -91,6 +91,12 @@ if(isset($_SESSION['user'])){ ?>
             <div class="text-center" style="padding-bottom: 15px;">
               <button type="button" class="btn btn-info" id="goMultiBet">Go bet</button>
             </div>
+
+            <div style="padding: 15px;" id="multi-bet-data">
+              
+            </div>
+
+
           </div>
         </div>
         
@@ -105,8 +111,39 @@ if(isset($_SESSION['user'])){ ?>
 
     </div>
   </div>
+
+
+
+  <div class="modal fade betForm in bet-modal" id="existModal" role="dialog" aria-labelledby="existModalLabel">
+    <div class="modal-dialog">
+
+
+      <div class="modal-content m-content">
+        <div class="modal-header m-head mh-color" >
+          <button type="button" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+          <h4 class="modal-title" style="color: #D2D2D2" id="existModalLabel"> &nbsp; Already Added</h4>
+        </div>
+
+        <div style="padding: 25px 15px;text-align: center;">
+          <h4>This game already added into your bet list, Select another game .</h4>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+  <button type="button" class="btn multi-bet-count-button" id="multi-bet-count-button"><span id="countBet"></span>Multi Bet</button>
+
+
+
 </div>
 
 <?php } ?>
+
+
+
+
+
 
 
