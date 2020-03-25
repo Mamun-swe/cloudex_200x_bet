@@ -17,6 +17,7 @@
     $statement = $pdo->prepare("SELECT sum(amount) FROM tbl_deposit WHERE date = '$date' AND status = 1");
     $statement->execute();
     $today_deposite = $statement->fetchColumn();
+    
     if($today_deposite > 0){
       $response=array(
         "amount" => $today_deposite

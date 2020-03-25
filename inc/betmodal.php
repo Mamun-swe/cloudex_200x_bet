@@ -88,13 +88,65 @@ if(isset($_SESSION['user'])){ ?>
           </div>
 
           <div id="multi-tab" class="tab">
-            <div class="text-center" style="padding-bottom: 15px;">
+            <!-- <div class="text-center" style="padding-bottom: 15px;">
               <button type="button" class="btn btn-info" id="goMultiBet">Go bet</button>
-            </div>
+            </div> -->
 
             <div style="padding: 15px;" id="multi-bet-data">
               
+              <?php 
+                $sum = 1;
+
+                $stated = $pdo->prepare("SELECT * FROM tbl_game JOIN multi_bet_info ON multi_bet_info.game_id=tbl_game.game_id WHERE multi_bet_info.user_id=?");
+                $stated->execute(array($_SESSION['user']['user_id']));
+                $resultd = $stated->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($resultd as $row) {
+
+                  $stake = $pdo->prepare("SELECT * FROM tbl_stake WHERE stake_id=?");
+                  $stake->execute(array($row['stack_id']));
+                  $stake_result = $stake->fetchAll(PDO::FETCH_ASSOC);
+                  foreach($stake_result as $stake_row){
+                    $sum = $sum * $stake_row['rate'];
+              ?>
+                <ul class='game-list'>
+                  <li><?php echo $row['desh1'].' '. 'VS'.' '. $row['desh2'].' '.'||'. ' '.$row['tournament'].' '.'||'. ' '.$row['date'].','.' '.$row['time']; ?> </li>
+                  <li><?php echo $stake_row['stake_name']; ?></li>
+                  <li><?php echo $stake_row['bet_name']; ?><span class="rate"><?php echo $stake_row['rate']; ?></span></li>
+                </ul>
+              <?php 
+                  }
+                }
+              ?>
+
             </div>
+
+            
+            <div class="equiation">
+              <ul class="list-inline">
+                <li class="list-inline-item p-0"><span class="multiAmountBtn">200</span></li>
+                <li class="list-inline-item p-0"><span class="multiAmountBtn">500</span></li>
+                <li class="list-inline-item p-0"><span class="multiAmountBtn">1000</span></li>
+                <li class="list-inline-item p-0"><span class="multiAmountBtn">3000</span></li>
+                <li class="list-inline-item p-0"><span class="multiAmountBtn">5000</span></li>
+              </ul>
+              <div>
+                <input type="hidden" id="rate" value="<?php echo $sum; ?>">
+                <input id="multiBet" type="number" min="1" class="number form-control"> 
+              
+                <div class="d-flex">
+                  <div><p>Total Stake</p></div>
+                  <div class="ml-auto"><p id="totalStake"></p></div>
+                </div>
+                <div class="d-flex">
+                  <div><p>Possible Winning</p></div>
+                  <div class="ml-auto"><p id="winResult"></p></div>
+                </div>
+
+              </div>
+            </div>
+
+            <button class="btn btn-lg btn-block mh-color" style="color: #fff;">Submit</button>
+            <br><br>
 
 
           </div>
@@ -133,7 +185,16 @@ if(isset($_SESSION['user'])){ ?>
     </div>
   </div>
 
-  <button type="button" class="btn multi-bet-count-button" id="multi-bet-count-button"><span id="countBet"></span>Multi Bet</button>
+  <button type="button" class="btn multi-bet-count-button" id="multi-bet-count-button">
+    <span id="countBet">
+      <?php 
+        $statement = $pdo->prepare("SELECT * FROM multi_bet_info WHERE user_id=?");
+        $statement->execute(array($_SESSION['user']['user_id']));
+        $total_bet = $statement->rowCount();
+        echo $total_bet;
+      ?>
+    </span>Multi Bet
+  </button>
 
 
 

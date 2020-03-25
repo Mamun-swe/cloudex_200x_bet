@@ -192,7 +192,7 @@ body {
     padding: 0 20px
 }
 
-.itemSlider .SliderItem {}
+
 
 .itemSlider .sliderImg {
     text-align: center;
@@ -365,7 +365,7 @@ table.table.dataTable tr td {
 
 .modal-content {
     background: #f3f3f3!important;
-    overflow: hidden
+    height: auto;
 }
 
 .pagination>li>a,
