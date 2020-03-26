@@ -412,3 +412,13 @@
 	top: 10px;
 	right: 0;
 }
+
+.multi-bet-data .d-flex .ml-auto{
+	position: absolute;
+	top: 0px;
+	right: 0;
+}
+
+.multi-bet-data .d-flex .ml-auto .btn{
+	color: red;
+}

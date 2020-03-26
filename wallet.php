@@ -7,6 +7,7 @@ include("registration.php");
 // }
 date_default_timezone_set('Asia/Dhaka');
 $date=date("Y-m-d h:i");
+$sponsor_name ="";
 if(isset($_SESSION['user'])){
 	$uid=$_SESSION['user']['user_id'];
 	$pass=$_SESSION['user']['password'];
@@ -22,8 +23,7 @@ if(isset($_SESSION['user'])){
 	$statement9 = $pdo->prepare("SELECT * FROM tbl_sponsor JOIN tbl_member ON  tbl_sponsor.sponsor_user_id=tbl_member.user_id WHERE tbl_sponsor.user_id=?");
 	$statement9->execute(array($uid));
 	$result9 = $statement9->fetchAll(PDO::FETCH_ASSOC);
-	$statements = $pdo->prepare("SELECT *
-		FROM tbl_member WHERE user_id=?");
+	$statements = $pdo->prepare("SELECT * FROM tbl_member WHERE user_id=?");
 	$statements->execute(array($sponsor_id));
 	$results = $statements->fetchAll(PDO::FETCH_ASSOC);
 	foreach ($results as $rows) {
@@ -179,7 +179,9 @@ foreach ($result20 as $row20) {
 											</tr>
 												<tr>
 												<th style="color: #1E5999; font-size: 17px;"><strong>Sponsor</strong></th>
-												<td><?php echo $sponsor_name; ?></td>
+												<td>
+													<?php echo $sponsor_name; ?>
+												</td>
 											</tr>
 										</tbody>
 									</table>

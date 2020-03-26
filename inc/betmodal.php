@@ -88,11 +88,14 @@ if(isset($_SESSION['user'])){ ?>
           </div>
 
           <div id="multi-tab" class="tab">
-            <!-- <div class="text-center" style="padding-bottom: 15px;">
-              <button type="button" class="btn btn-info" id="goMultiBet">Go bet</button>
-            </div> -->
+           
 
-            <div style="padding: 15px;" id="multi-bet-data">
+            
+            <div id="multi-bet-message"></div>
+
+          <form id="multi-bet">
+
+            <div class="multi-bet-data" style="padding: 15px;" id="multi-bet-data">
               
               <?php 
                 $sum = 1;
@@ -108,14 +111,26 @@ if(isset($_SESSION['user'])){ ?>
                   foreach($stake_result as $stake_row){
                     $sum = $sum * $stake_row['rate'];
               ?>
-                <ul class='game-list'>
-                  <li><?php echo $row['desh1'].' '. 'VS'.' '. $row['desh2'].' '.'||'. ' '.$row['tournament'].' '.'||'. ' '.$row['date'].','.' '.$row['time']; ?> </li>
-                  <li><?php echo $stake_row['stake_name']; ?></li>
-                  <li><?php echo $stake_row['bet_name']; ?><span class="rate"><?php echo $stake_row['rate']; ?></span></li>
-                </ul>
+              <div class="d-flex">
+                <div>
+                  <ul class='game-list'>
+                    <li><?php echo $row['desh1'].' '. 'VS'.' '. $row['desh2'].' '.'||'. ' '.$row['tournament'].' '.'||'. ' '.$row['date'].','.' '.$row['time']; ?> </li>
+                    <li><?php echo $stake_row['stake_name']; ?></li>
+                    <li><?php echo $stake_row['bet_name']; ?><span class="rate"><?php echo $stake_row['rate']; ?></span></li>
+                  </ul>
+                  <input type="hidden" name="stake_id[]" value="<?php echo $stake_row['stake_id']; ?>">
+                </div>
+                <div class="ml-auto">
+                
+                  <button type="button" class="btn text-danger" onclick="deleteStake('<?php echo $stake_row['stake_id']?>', '<?php echo $_SESSION['user']['user_id']; ?>')">x</button>
+        
+                </div>
+              </div>
+                
               <?php 
                   }
                 }
+                if(count($resultd) > 0) {
               ?>
 
             </div>
@@ -145,10 +160,18 @@ if(isset($_SESSION['user'])){ ?>
               </div>
             </div>
 
-            <button class="btn btn-lg btn-block mh-color" style="color: #fff;">Submit</button>
+            <input type="hidden" name="multi-amount" id="multi-amount" value="100">
+
+            <button type="submit" id="submit-multi-bet" class="btn btn-lg btn-block mh-color" style="color: #fff;">Submit</button>
+            </form>
+
             <br><br>
 
-
+              <?php }else{ ?>
+                <div class="text-center" style="padding-bottom: 15px;">
+              <button type="button" class="btn btn-info" id="goMultiBet">Go bet</button>
+            </div>
+              <?php } ?>
           </div>
         </div>
         
@@ -169,7 +192,6 @@ if(isset($_SESSION['user'])){ ?>
   <div class="modal fade betForm in bet-modal" id="existModal" role="dialog" aria-labelledby="existModalLabel">
     <div class="modal-dialog">
 
-
       <div class="modal-content m-content">
         <div class="modal-header m-head mh-color" >
           <button type="button" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
@@ -179,7 +201,6 @@ if(isset($_SESSION['user'])){ ?>
         <div style="padding: 25px 15px;text-align: center;">
           <h4>This game already added into your bet list, Select another game .</h4>
         </div>
-
 
       </div>
     </div>
@@ -201,6 +222,8 @@ if(isset($_SESSION['user'])){ ?>
 </div>
 
 <?php } ?>
+
+
 
 
 

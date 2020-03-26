@@ -28,6 +28,7 @@ if(isset($_POST['stake_id'])){
       
       $ucredit=$row22['credit'];
   }
+  
   $uid=$_POST['amount']+10;
   $id=$_POST['stake_id'];
   $state = $pdo->prepare("SELECT *

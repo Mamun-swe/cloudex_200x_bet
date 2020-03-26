@@ -211,52 +211,12 @@ function bet(stack_id, game_id, user_id) {
                 if (res == 'found') {
                     $('#existModal').modal('show');
                 }
+
+                if(res == 'success'){
+                   location.reload();
+                }
             }
         });
-
-
-        // var gamesArr = [];
-
-        // ax = JSON.parse(localStorage.getItem('games')) || [];
-        // var x = ax.find(element => element.game_id == game_id);
-
-        // var betLength = ax.length;
-        // $('#multi-bet-count-button').show();
-        // $('#countBet').html(betLength);
-
-        // if (x) {
-        //     $('#existModal').modal('show');
-        // } else {
-        //     $.ajax({
-        //         url: "multi-bet.php",
-        //         type: "post",
-        //         dataType: "text",
-        //         data: {
-        //             stake_id: stack_id
-        //         },
-        //         success: function(response) {
-        //             var res = JSON.parse(response);
-        //             var obj = {
-        //                 game_id: res[0].game_id,
-        //                 stake_id: res[0].stake_id,
-        //                 desh1: res[0].desh1,
-        //                 desh2: res[0].desh2,
-        //                 tournament: res[0].tournament,
-        //                 date: res[0].date,
-        //                 time: res[0].time,
-        //                 satke_name: res[0].stake_name,
-        //                 bet_name: res[0].bet_name,
-        //                 rate: res[0].rate
-        //             }
-        //             gamesArr = JSON.parse(localStorage.getItem('games')) || [];
-        //             gamesArr.push(obj);
-        //             localStorage.setItem('games', JSON.stringify(gamesArr));
-
-        //             var betLength = gamesArr.length;
-        //             $('#countBet').html(betLength);
-        //         }
-        //     });
-        // }
     }
 }
 
@@ -271,6 +231,7 @@ $('.multiAmountBtn').click(function() {
     var amount = $(this).text();
     $('#multiBet').val(amount).trigger('change');
     $('#totalStake').text(amount);
+    $('#multi-amount').val(amount);
 })
 
 var totalStake = $('#totalStake').text('100');
@@ -278,16 +239,59 @@ var result = 100 * $('#rate').val();
 $('#winResult').text(result + '.00');
 $("#multiBet").bind("change keyup", function() {
     var totalStake = $('#multiBet').val();
+    $('#multi-amount').val(totalStake);
+
     $('#totalStake').text(totalStake);
     var result = totalStake * $('#rate').val();
     $('#winResult').text(result + '.00');
 });
 
+// Multi-bet form submit
+$('#submit-multi-bet').click(function(e) {
+    e.preventDefault();
+
+    $.ajax({
+        url: "multi-bet-post.php",
+        type: "post",
+        dataType: "text",
+        data: $('#multi-bet').serialize(),
+        success: function(response) {
+            var res = JSON.parse(response);
+            $('#multi-bet-message').append('<div class="alert alert-success" role="alert">' + res +
+                '</div>');
+        }
+    });
+});
+
+// Remove Single bet from multi-bet
+function deleteStake(stake_id, user_id) {
+    var data = {
+        user_id: user_id,
+        stake_id: stake_id
+    }
+
+    $.ajax({
+        url: "delete-single-bet-from-multi.php",
+        type: 'post',
+        data: data,
+        success: function(response) {
+            var res = JSON.parse(response);
+            if(res == 'success'){
+                location.reload();
+            }
+        }
+    })
+}
+
+
+
+
+
+
 
 
 
 // Bet Modal
-
 // Single Bet 
 localStorage.setItem('tab', 1);
 $('#single-bet-trigger').click(function() {
@@ -314,9 +318,9 @@ $('#multi-bet-trigger').click(function() {
     $('#goMultiBet').show();
 });
 
-// $('#goMultiBet').click(function() {
-//     $('#betRequestModal').modal('hide');
-// });
+$('#goMultiBet').click(function() {
+    $('#betRequestModal').modal('hide');
+});
 </script>
 
 
