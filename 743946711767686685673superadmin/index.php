@@ -41,6 +41,9 @@ $statement = $pdo->prepare("SELECT sum(amount) FROM tbl_deposit WHERE date = '$d
 $statement->execute();
 $today_deposite = $statement->fetchColumn();
 
+$withdraw = $pdo->prepare("SELECT sum(amount) FROM tbl_withdraw");
+$withdraw->execute();
+$total_withdraw = $withdraw->fetchColumn();
 
 ?>
  <!DOCTYPE html>  
@@ -48,6 +51,11 @@ $today_deposite = $statement->fetchColumn();
       <head>  
       </head>
       <body> 
+
+	<?php 
+		if($_SESSION['admin']['role'] == 'Super admin'){
+	?>
+
         <section class="content-header">
         	<h1>Dashboard</h1>
         </section>
@@ -192,10 +200,34 @@ $today_deposite = $statement->fetchColumn();
         				</div>
         			</div>
         		</div>
+
+				<div class="col-md-4 col-sm-6 col-xs-12">
+        			<div class="info-box">
+        				<span class="info-box-icon bg-primary"><i class="fa fa-money text-white"></i></span>
+        				<div class="info-box-content">
+        					<span class="info-box-text">Total Withdraw</span>
+        					<span class="info-box-number">
+								<?php
+									if($total_withdraw > 0){
+										echo $total_withdraw;
+									}else{
+										echo "0";
+									}
+								?>
+							</span>
+        				</div>
+        			</div>
+        		</div>
         		
         	</div>
         </section>
         <br><br>
+
+	<?php 
+		}
+	?>
+
+
       </body>  
  </html> 
 <?php require_once('footer.php'); ?>

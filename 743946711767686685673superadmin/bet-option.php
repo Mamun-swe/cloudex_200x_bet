@@ -19,6 +19,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 		</h1>
 	</div>
 	<div class="content-header-right">
+		<a href="bet-status-change.php?id=<?php echo $_REQUEST['id']; ?>" class="btn btn-success btn-xs">Change Status</a>
 		<a href="bet-option-add.php?id=<?php echo $_REQUEST['id']; ?>&name=<?php echo $show; ?>" class="btn btn-primary btn-sm">Add Bets</a>
 	</div>
 </section>
@@ -46,7 +47,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 								<th width="150">Action</th>
 								<?php if($_SESSION['admin']['role'] == 'Super admin'){ ?>
 								<th width="100">Action</th>
-								<th width="50">Action</th> 
+								<!-- <th width="50">Action</th>  -->
 								<?php } ?>
 							</tr>
 						</thead>
@@ -63,6 +64,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 								$i++;
 								$game=$rows['desh1'].'<span style="color:green;"> VS </span>'.$rows['desh2']." -> ".$row['tournament']." || ".$row['date']." , ".$row['time'];
 								?>
+								
 								<tr class="<?php if($row['stake_status']==1) {echo 'bg-g';}else if($row['stake_status']==0) {echo 'bg-r';} ?>">
 									<td><?php echo $i; ?></td>
 									<td><?php echo $game; ?></td>
@@ -108,6 +110,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 											</form>
 											
 											<a href="bet-win-return.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Admin Return</a>
+											
 										<?php 
 											} 
 										}
@@ -129,15 +132,23 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 											
 											<a href="bet-win-return.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Admin Return</a>
 
+											<form method="post">
+												<input type="hidden" name="game_id" value="<?php echo $row['game_id']; ?>">
+												<button type="submit" name="recover" class="btn btn-info btn-xs">Recover</button>
+											</form>
+											<?php 
+												if(isset($_POST['recover'])){
+													$statement = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=?");
+													$statement->execute(array(1, $_POST['game_id']));
+
+												}
+											?>
 										<?php 
 											}	
 											if($_SESSION['admin']['role'] == 'Super admin'){
 										?>
 										
 									</td>
-											<td>
-												<a href="bet-status-change.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-success btn-xs">Change Status</a>
-											</td>
 											<td>
 												<a href="bet-option-edit.php?id=<?php echo $row['stake_id']; ?>&page=<?php echo $row['game_id']; ?>" class="btn btn-info btn-xs">Edit</a>
 											</td>
@@ -156,24 +167,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 
 		</section>
 
-<!-- 
-		<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
-					</div>
-					<div class="modal-body">
-						<p>Are you sure want to delete this item?</p>
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-						<a class="btn btn-danger btn-ok">Delete</a>
-					</div>
-				</div>
-			</div>
-		</div> -->
 
 
-		<?php require_once('footer.php'); ?>
+
+<?php require_once('footer.php'); ?>

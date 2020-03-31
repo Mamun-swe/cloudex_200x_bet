@@ -6,7 +6,7 @@ if(!isset($_REQUEST['id'])) {
 	exit;
 } else {
 	// Check the id is valid or not
-	$statement = $pdo->prepare("SELECT * FROM tbl_stake WHERE stake_id=?");
+	$statement = $pdo->prepare("SELECT * FROM tbl_stake WHERE game_id=?");
 	$statement->execute(array($_REQUEST['id']));
 	$total = $statement->rowCount();
 	if( $total == 0 ) {
@@ -22,11 +22,16 @@ if(!isset($_REQUEST['id'])) {
 ?>
 
 <?php
-if($status == 0) {$final = 1;} else {$final = 0;}
-$statement = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE stake_id=?");
+if($status == 0) {
+	$final = 1;
+} else {
+	$final = 0;
+}
+$statement = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=?");
 $statement->execute(array($final,$_REQUEST['id']));
 
-$page=$_REQUEST['page'];
-$url = "bet-option.php?id=$page";
-header("Location: ".$url);
+// $page=$_REQUEST['page'];
+// $url = "bet-option.php?id=$page";
+// header("Location: ".$url);
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 ?>
