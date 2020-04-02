@@ -108,7 +108,18 @@ foreach ($results as $rows) {
                           ?>    
 
                           <div onclick="bet(
-                            <?php echo $rows2['stake_id'].','.$rows['game_id'].','.$_SESSION['user']['user_id']; ?>); return false;" class="place-bet btn btn-default btn-sm data-show buttonrate active-question" style="cursor: pointer">
+                              '<?php echo $rows2['stake_id']; ?>', 
+                              '<?php echo $rows['game_id']; ?>',
+                              '<?php echo $_SESSION['user']['user_id']; ?>',
+                              '<?php echo $rows['desh1']; ?>',
+                              '<?php echo $rows['desh2']; ?>',
+                              '<?php echo $rows['tournament']; ?>',
+                              '<?php echo $rows['date']; ?>',
+                              '<?php echo $rows['time']; ?>',
+                              '<?php echo $rows2['stake_name']; ?>',
+                              '<?php echo $rows2['bet_name']; ?>',
+                              '<?php echo $rows2['rate']; ?>',
+                            ); return false;" class="place-bet btn btn-default btn-sm data-show buttonrate active-question" style="cursor: pointer">
                             <span class="text"><?php echo $rows2['bet_name']; ?></span> <span style="color:#1C69C2 ;"><?php echo $rows2['rate']; ?></span>
                           </div>
                         <?php }} ?>                                           

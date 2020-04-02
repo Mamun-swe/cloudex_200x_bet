@@ -313,7 +313,7 @@
 	text-align: right;
 }
 
-.multi-bet-count-button {
+.multibet-count-button {
 	position: fixed;
 	right: 20px;
 	bottom: 20px;
@@ -324,15 +324,14 @@
 	background: #1c69c2;
 	color: #fff;
 	transition: 0.3s;
-	display: none;
 }
 
-.multi-bet-count-button:hover {
+.multibet-count-button:hover {
 	color: #fff;
 	margin-bottom: 5px;
 }
 
-.multi-bet-count-button span {
+.multibet-count-button span {
 	background: #c04425;
 	padding: 5px;
 	border-radius: 16px;
@@ -395,30 +394,34 @@
 	color: #fff
 }
 
-.d-flex{
+.d-flex {
 	width: 100%;
 	position: relative;
 	padding-top: 5px;
 }
 
-.d-flex p{
+.d-flex p {
 	color: #000;
 	font-weight: bold;
 	margin-bottom: 0;
 }
 
-.d-flex .ml-auto{
+.d-flex .ml-auto {
 	position: absolute;
 	top: 10px;
 	right: 0;
 }
 
-.multi-bet-data .d-flex .ml-auto{
-	position: absolute;
-	top: 0px;
-	right: 0;
+.multi-bet-data #data-list .btn {
+	color: red;
 }
 
-.multi-bet-data .d-flex .ml-auto .btn{
-	color: red;
+/* Multi Bet */
+
+.multi-bet-modal .half-block {
+	display: inline-block;
+	width: 49%;
+	border-radius: 0;
+	padding-top: 12px;
+	padding-bottom: 12px;
 }

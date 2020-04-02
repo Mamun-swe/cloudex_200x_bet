@@ -10,19 +10,7 @@ if(isset($_SESSION['user'])){ ?>
           <button type="button" onClick="window.location.reload();" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
           <h4 class="modal-title" style="color: #D2D2D2" id="betRequestModalLabel"> &nbsp; Enter Your  Bet Amount</h4>
         </div>
-       
-
-
-        <ul class="tabs">
-          <li class="tab-link">
-            <button type="button" id="single-bet-trigger" class="btn shadow-none current">Single Bet</button>
-          </li>
-          <li class="tab-link">
-            <button type="button" id="multi-bet-trigger"  class="btn shadow-none">Multi Bet</button>
-          </li>
-        </ul>
-
-        <div class="tabs-content">
+  
           <div id="single-tab" class="tab current-tab">
             <div class="modal-body" style="padding: 2% !important" id="betRequestModal">
 
@@ -87,141 +75,77 @@ if(isset($_SESSION['user'])){ ?>
             </div>
           </div>
 
-          <div id="multi-tab" class="tab">
-           
-
-            
-            <div id="multi-bet-message"></div>
-
-          <form id="multi-bet">
-
-            <div class="multi-bet-data" style="padding: 15px;" id="multi-bet-data">
-              
-              <?php 
-                $sum = 1;
-
-                $stated = $pdo->prepare("SELECT * FROM tbl_game JOIN multi_bet_info ON multi_bet_info.game_id=tbl_game.game_id WHERE multi_bet_info.user_id=?");
-                $stated->execute(array($_SESSION['user']['user_id']));
-                $resultd = $stated->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($resultd as $row) {
-
-                  $stake = $pdo->prepare("SELECT * FROM tbl_stake WHERE stake_id=?");
-                  $stake->execute(array($row['stack_id']));
-                  $stake_result = $stake->fetchAll(PDO::FETCH_ASSOC);
-                  foreach($stake_result as $stake_row){
-                    $sum = $sum * $stake_row['rate'];
-              ?>
-              <div class="d-flex">
-                <div>
-                  <ul class='game-list'>
-                    <li><?php echo $row['desh1'].' '. 'VS'.' '. $row['desh2'].' '.'||'. ' '.$row['tournament'].' '.'||'. ' '.$row['date'].','.' '.$row['time']; ?> </li>
-                    <li><?php echo $stake_row['stake_name']; ?></li>
-                    <li><?php echo $stake_row['bet_name']; ?><span class="rate"><?php echo $stake_row['rate']; ?></span></li>
-                  </ul>
-                  <input type="hidden" name="stake_id[]" value="<?php echo $stake_row['stake_id']; ?>">
-                </div>
-                <div class="ml-auto">
-                
-                  <button type="button" class="btn text-danger" onclick="deleteStake('<?php echo $stake_row['stake_id']?>', '<?php echo $_SESSION['user']['user_id']; ?>')">x</button>
-        
-                </div>
-              </div>
-                
-              <?php 
-                  }
-                }
-                if(count($resultd) > 0) {
-              ?>
-
-            </div>
-
-            
-            <div class="equiation">
-              <ul class="list-inline">
-                <li class="list-inline-item p-0"><span class="multiAmountBtn">200</span></li>
-                <li class="list-inline-item p-0"><span class="multiAmountBtn">500</span></li>
-                <li class="list-inline-item p-0"><span class="multiAmountBtn">1000</span></li>
-                <li class="list-inline-item p-0"><span class="multiAmountBtn">3000</span></li>
-                <li class="list-inline-item p-0"><span class="multiAmountBtn">5000</span></li>
-              </ul>
-              <div>
-                <input type="hidden" id="rate" value="<?php echo $sum; ?>">
-                <input id="multiBet" type="number" min="1" class="number form-control"> 
-              
-                <div class="d-flex">
-                  <div><p>Total Stake</p></div>
-                  <div class="ml-auto"><p id="totalStake"></p></div>
-                </div>
-                <div class="d-flex">
-                  <div><p>Possible Winning</p></div>
-                  <div class="ml-auto"><p id="winResult"></p></div>
-                </div>
-
-              </div>
-            </div>
-
-            <input type="hidden" name="multi-amount" id="multi-amount" value="100">
-
-            <button type="submit" id="submit-multi-bet" class="btn btn-lg btn-block mh-color" style="color: #fff;">Submit</button>
-            </form>
-
-            <br><br>
-
-              <?php }else{ ?>
-                <div class="text-center" style="padding-bottom: 15px;">
-              <button type="button" class="btn btn-info" id="goMultiBet">Go bet</button>
-            </div>
-              <?php } ?>
-          </div>
-        </div>
-        
-
-      
-
-
-
-      </div>
-
-
-
-    </div>
-  </div>
-
-
-
-  <div class="modal fade betForm in bet-modal" id="existModal" role="dialog" aria-labelledby="existModalLabel">
-    <div class="modal-dialog">
-
-      <div class="modal-content m-content">
-        <div class="modal-header m-head mh-color" >
-          <button type="button" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
-          <h4 class="modal-title" style="color: #D2D2D2" id="existModalLabel"> &nbsp; Already Added</h4>
-        </div>
-
-        <div style="padding: 25px 15px;text-align: center;">
-          <h4>This game already added into your bet list, Select another game .</h4>
-        </div>
-
       </div>
     </div>
   </div>
-
-  <button type="button" class="btn multi-bet-count-button" id="multi-bet-count-button">
-    <span id="countBet">
-      <?php 
-        $statement = $pdo->prepare("SELECT * FROM multi_bet_info WHERE user_id=?");
-        $statement->execute(array($_SESSION['user']['user_id']));
-        $total_bet = $statement->rowCount();
-        echo $total_bet;
-      ?>
-    </span>Multi Bet
-  </button>
-
-
 
 </div>
 
-<?php } ?>
+
+
+
+<!-- Multi Bet -->
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary multibet-count-button" id="multiBetTrigger" data-toggle="modal" data-target="#exampleModal">
+       <span id="count"></span> Multi Bet
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade multi-bet-modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header m-head mh-color" >
+                <button type="button" class="close close-modal" style="color: #ffffff">×</button>
+                <h4 class="modal-title" style="color: #D2D2D2" id="betRequestModalLabel"> &nbsp; Multi Bet</h4>
+              </div>
+
+                <div class="modal-body" id="modal-body">
+                  <div id="multi-bet-message"></div>
+                  <form id="multi-bet-form">
+                    <div class="multi-bet-data" style="padding: 15px;" id="multi-bet-data">
+                      <div id="data-list"></div>
+                    </div>
+
+                    <div class="equiation">
+                      <ul class="list-inline">
+                        <li class="list-inline-item p-0"><span class="multiAmountBtn">200</span></li>
+                        <li class="list-inline-item p-0"><span class="multiAmountBtn">500</span></li>
+                        <li class="list-inline-item p-0"><span class="multiAmountBtn">1000</span></li>
+                        <li class="list-inline-item p-0"><span class="multiAmountBtn">3000</span></li>
+                        <li class="list-inline-item p-0"><span class="multiAmountBtn">5000</span></li>
+                      </ul>
+                      <div>
+                        <input type="hidden" id="rate" value="10000">
+                        <input id="multiBet" type="number" min="1" class="number form-control"> 
+                      
+                        <div class="d-flex">
+                          <div><p>Total Stake</p></div>
+                          <div class="ml-auto"><p id="totalStake"></p></div>
+                        </div>
+                        <div class="d-flex">
+                          <div><p>Possible Winning</p></div>
+                          <div class="ml-auto"><p id="winResult"></p></div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <input type="hidden" name="multi-amount" id="multi-amount" value="100">
+
+                    <button type="submit" class="btn half-block btn-primary place-bet-btn" id="multi-bet-form-submit">PLACE BET</button>
+                    <button type="button" class="btn half-block btn-primary more-bet-btn">ADD MORE</button>
+                    <button type="button" class="btn half-block btn-info close-modal">CLOSE</button>
+                  </form>
+
+                </div>
+              
+            </div>
+        </div>
+    </div>
+
+
+<!-- /Multi Bet -->
 
 
 
@@ -229,5 +153,6 @@ if(isset($_SESSION['user'])){ ?>
 
 
 
-
-
+<?php
+  } 
+?>
