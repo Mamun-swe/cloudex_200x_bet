@@ -143,11 +143,33 @@ if(isset($_SESSION['user'])){ ?>
             </div>
         </div>
     </div>
-
-
 <!-- /Multi Bet -->
 
 
+<!-- Exist Modal -->
+
+<!-- Modal -->
+<div class="modal exist-modal fade" id="existModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header m-head mh-color" >
+        <button type="button" class="close" data-dismiss="modal" style="color: #ffffff">×</button>
+        <h4 class="modal-title" style="color: #D2D2D2" id="betRequestModalLabel"> &nbsp; Multi Bet Alert</h4>
+      </div>
+      <div class="modal-body text-center">
+        <h1><b>X</b></h1>
+        <br>
+        <p>Sorry You can't add multiple question from same match in multi bet. If you wanna back to single bet system please press single bet button.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn half-block btn-primary btn-secondary" data-dismiss="modal">NO THANKS</button>
+        <button type="button" class="btn half-block btn-primary btn-primary close-modal">SINGLE BET</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- /Exist Modal -->
 
 
 

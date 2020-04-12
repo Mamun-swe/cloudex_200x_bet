@@ -37,3 +37,12 @@
 .bet-modal .tabs-content {
     padding: 5px 15px;
 }
+
+
+.exist-modal .half-block {
+	display: inline-block;
+	width: 49%;
+	border-radius: 0;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}

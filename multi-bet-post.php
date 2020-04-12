@@ -11,7 +11,7 @@
     $number = count($_POST['stake_id']);
     $amount = $_POST['multi-amount'];
 
-    if($number > 0){
+    // if($number > 0){
         for($i=0; $i<$number; $i++){
             // echo json_encode($_POST['stake_id'][$i]);
             $stated = $pdo->prepare("SELECT * FROM tbl_stake JOIN tbl_game ON tbl_stake.game_id=tbl_game.game_id WHERE tbl_stake.stake_id=?");
@@ -168,7 +168,9 @@
         if($success == 1){
             echo json_encode("Congratulations! Your Bet has been placed.");
         }
-    }
+    // }else{
+    //     echo json_encode("Please select game.");
+    // }
 
     
 

@@ -159,6 +159,9 @@ $("#bet").on("change keypress input", function() {
 // document.getElementById('betRequestModalLabel').innerHTML;
 // }
 
+
+
+
 // Multi Bet Games Array
 var games = [];
 if (games.length > 0) {
@@ -222,7 +225,8 @@ function bet(stack_id, game_id, user_id, desh1, desh2, tournament, date, time, s
         array_data = games.find(x => x.game_id === game_id);
 
         if (array_data) {
-            alert('exist');
+            // alert('exist');
+            $('#existModal').modal('show');
         } else {
             games.push(data);
             var output = "";
@@ -278,14 +282,15 @@ function removeItem(index) {
     var output = "";
     var total = 1;
     for (var i in games) {
-        output += "<ul class='game-list'>" +
-            "<li>" + games[i].desh1 + ' VS ' + games[i].desh1 + ' || ' + games[i].tournament + ' || ' + games[i].date +
-            ' || ' + games[i].time + "</li>" +
-            "<li>" + games[i].stake_name + "</li>" +
-            "<li>" + games[i].bet_name + "<span class='rate'>" + games[i].rate + "</span></li>" +
-            "<li>" + '<a href="#" class="btn text-danger" onclick="removeItem(' + i + '); return false;">x</a>' +
-            "</li>" +
-            "</ul>";
+            output += "<ul class='game-list'>" +
+                    "<li>" + games[i].desh1 + ' VS ' + games[i].desh1 + ' || ' + games[i].tournament + ' || ' + games[i]
+                    .date + ' || ' + games[i].time + "</li>" +
+                    "<li>" + games[i].stake_name + "</li>" +
+                    "<li>" + games[i].bet_name + "<span class='rate'>" + games[i].rate + "</span></li>" +
+                    "<li>" + '<a href="#" class="btn text-danger" onclick="removeItem(' + i +
+                    '); return false;">x</a>' + "</li>" +
+                    "<li>" + '<input type="hidden" name="stake_id[]" value=' + games[i].stack_id + '>' + "</li>" +
+                    "</ul>";
         total = total * games[i].rate;
     }
     $("#data-list").html(output);
@@ -340,6 +345,7 @@ $('#multi-bet-form-submit').click(function(e) {
         data: $('#multi-bet-form').serialize(),
         success: function(response) {
             var res = JSON.parse(response);
+            console.log(response);
             $('#multi-bet-message').append('<div class="alert alert-success" role="alert">' + res +
                 '</div>');
         }
