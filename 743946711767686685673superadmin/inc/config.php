@@ -9,7 +9,7 @@ date_default_timezone_set('Asia/Dhaka');
 $dbhost = 'localhost';
 
 // Database Name
-$dbname = 'codes_db';
+$dbname = '200xbet';
 
 // Database Username
 $dbuser = 'root';

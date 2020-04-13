@@ -2,26 +2,26 @@
 require_once('header.php');
 ?>
 <?php
+
 if(isset($_POST['form1'])) {
-
-
+	$nx= mt_rand();
+	
 // 	$c=$_REQUEST['count'];
 	$question = $_POST['question'];
     $bet = $_POST['bet'];
 	$stake=$_SESSION['question'];
     
 	foreach( array_combine($question, $bet) as $f => $n ){
-
 		$price='0.00';
-		
 		$statement = $pdo->prepare("INSERT INTO `tbl_stake`(
 					    `game_id`, 
 					    `stake_name`,
 					    `bet_name`,
 					    `rate`,
 					    `sell_price`,
-					    `stake_status`
-					) VALUES (?,?,?,?,?,?)");
+					    `stake_status`,
+						`question_id`
+					) VALUES (?,?,?,?,?,?,?)");
 
 		$statement->execute(array(
 								$_SESSION['id'],
@@ -29,22 +29,21 @@ if(isset($_POST['form1'])) {
 								$f,
 								$n,
 								$price,
-								1
+								1,
+								$nx
 							));
 		$url = "bet-option-add-new.php";
 		header("Location: ".$url);
-
 	}
 }
 
 if(isset($_POST['form2'])) {
-
+	$xn= mt_rand();
 // 	$c=$_REQUEST['count'];
 	$question = $_POST['question'];
     $bet = $_POST['bet'];
 	$stake=$_SESSION['question'];
 	foreach( array_combine($question, $bet) as $f => $n ){
-
 		$price='0.00';
 		
 		$statement = $pdo->prepare("INSERT INTO `tbl_stake`(
@@ -53,8 +52,9 @@ if(isset($_POST['form2'])) {
 					    `bet_name`,
 					    `rate`,
 					    `sell_price`,
-					    `stake_status`
-					) VALUES (?,?,?,?,?,?)");
+					    `stake_status`,
+						`question_id`
+					) VALUES (?,?,?,?,?,?,?)");
 
 		$statement->execute(array(
 								$_SESSION['id'],
@@ -62,7 +62,8 @@ if(isset($_POST['form2'])) {
 								$f,
 								$n,
 								$price,
-								1
+								1,
+								$xn
 							));
 		$msg="All bets are added successfully.";
 		$id=$_SESSION['id'];

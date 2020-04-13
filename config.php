@@ -20,7 +20,7 @@ $dbhost = 'localhost';
 
 // Database Name
 
-$dbname = 'codes_db';
+$dbname = '200xbet';
 
 
 

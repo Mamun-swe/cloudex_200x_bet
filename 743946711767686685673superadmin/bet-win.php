@@ -4,11 +4,11 @@
 if(isset($_POST['submit_win'])){
     if($_POST['status'] == 'win'){
 
-        $statement4 = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=? AND stake_id=?");
-        $statement4->execute(array(2, $_POST['game_id'], $_POST['stake_id']));
+        $statement4 = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=? AND stake_id=? AND question_id=?");
+        $statement4->execute(array(2, $_POST['game_id'], $_POST['stake_id'], $_POST['question_id']));
 
-        $statement5 = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=? AND stake_id !=?");
-        $statement5->execute(array(3, $_POST['game_id'], $_POST['stake_id']));
+        $statement5 = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=? AND stake_id !=? AND question_id=?");
+        $statement5->execute(array(3, $_POST['game_id'], $_POST['stake_id'], $_POST['question_id']));
 
 
 
@@ -50,11 +50,11 @@ if(isset($_POST['submit_win'])){
 
     if($_POST['status'] == 'loss'){
         
-        $statement4 = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=? AND stake_id=?");
-        $statement4->execute(array(3, $_POST['game_id'], $_POST['stake_id']));
+        $statement4 = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=? AND stake_id=? AND question_id=?");
+        $statement4->execute(array(3, $_POST['game_id'], $_POST['stake_id'], $_POST['question_id']));
 
-        $statement5 = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=? AND stake_id !=?");
-        $statement5->execute(array(2, $_POST['game_id'], $_POST['stake_id']));
+        $statement5 = $pdo->prepare("UPDATE tbl_stake SET stake_status=? WHERE game_id=? AND stake_id !=? AND question_id=?");
+        $statement5->execute(array(2, $_POST['game_id'], $_POST['stake_id'], $_POST['question_id']));
 
 
 
