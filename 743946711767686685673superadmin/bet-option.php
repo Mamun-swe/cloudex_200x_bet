@@ -99,6 +99,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 												<input type="hidden" value="win" name="status">
 												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
 												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
+												<input type="hidden" value="<?php echo $row['question_id']; ?>" name="question_id">
 												<button type="submit" name="submit_win" class="btn btn-success btn-xs">WIN</button>
 											</form>
 
@@ -106,6 +107,7 @@ $results = $statements->fetchAll(PDO::FETCH_ASSOC);
 												<input type="hidden" value="loss" name="status">
 												<input type="hidden" value="<?php echo $row['game_id']; ?>" name="game_id">
 												<input type="hidden" value="<?php echo $row['stake_id']; ?>" name="stake_id">
+												<input type="hidden" value="<?php echo $row['question_id']; ?>" name="question_id">
 												<button type="submit" name="submit_win" class="btn btn-danger btn-xs">LOSS</button>
 											</form>
 											
