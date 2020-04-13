@@ -480,7 +480,38 @@ $result = $statement->fetchAll(PDO::FETCH_ASSOC); ?>
 												</tr>
 												<?php
 													}
+													$betStatement = $pdo->prepare("SELECT * FROM tbl_bet WHERE bet_by=?");
+													$betStatement->execute(array($uid));
+													$betResult = $betStatement->fetchAll(PDO::FETCH_ASSOC);
+													foreach ($betResult as $betRow) {
 												?>
+													<tr>
+														<td><p><?php echo $betRow['date']; ?></p></td>
+														<td><p>Bet</p></td>
+														<td><p>Cost for betting</p></td>
+														<td class="text-center"><p><?php echo $betRow['return_amount']; ?></p></td>
+														<td class="text-center"><p>0</p></td>
+													</tr>
+													
+												<?php 
+													}
+													$depositeStatement = $pdo->prepare("SELECT * FROM tbl_deposit WHERE request_by=?");
+													$depositeStatement->execute(array($uid));
+													$depositeResult = $depositeStatement->fetchAll(PDO::FETCH_ASSOC);
+													foreach ($depositeResult as $depositeRow) {
+												?>
+												<tr>
+														<td><p><?php echo $depositeRow['date']; ?></p></td>
+														<td><p>Deposite</p></td>
+														<td><p><?php echo $depositeRow['method']; ?></p></td>
+														<td class="text-center"><p><?php echo $depositeRow['amount']; ?></p></td>
+														<td class="text-center"><p>0</p></td>
+													</tr>
+													
+												<?php 
+													}
+												?>
+
 											</tbody>
 										</table>
 										<div class="text-right border p-2">
