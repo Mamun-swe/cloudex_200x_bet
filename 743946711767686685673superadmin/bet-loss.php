@@ -23,6 +23,7 @@ $statement4->execute(array(3,$_REQUEST['id']));
 
 $slayer=0;
 $state = $pdo->prepare("SELECT * FROM tbl_bet WHERE stake_id=? AND bet_status=?");
+$state = $pdo->prepare("UPDATE tbl_bet SET bet_status='3' WHERE stake_id=?");
 $state->execute(array($_REQUEST['id'],$slayer));
 $result = $state->fetchAll(PDO::FETCH_ASSOC);
 foreach ($result as $row) {
