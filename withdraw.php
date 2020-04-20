@@ -3,7 +3,7 @@ include('config.php');
 session_start();
 $uid=$_SESSION['user']['user_id'];
 date_default_timezone_set('Asia/Dhaka');
-$date=date("Y-m-d h:i");
+$date=date("Y-m-d");
 
 
 $statement290 = $pdo->prepare("SELECT * FROM tbl_member WHERE user_id=?");

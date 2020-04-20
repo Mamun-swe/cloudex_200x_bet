@@ -173,9 +173,9 @@ $total_withdraw = $withdraw->fetchColumn();
 							var obj = JSON.parse(response);
 							var deposite = obj.amount;
 							if(deposite > 0){
-								$('.result').append('<div class="card-body"><h5 class="text-success"><b>Total deposite of this date: '+ deposite +'</b></h5></div>');
+								$('.result').html('<div class="card-body"><h5 class="text-success"><b>Total deposite of this date: '+ deposite +'</b></h5></div>');
 							} else{
-								$('.result').append('<div class="card-body"><h5 class="text-danger"><b>Total deposite of this date: '+ deposite +'</b></h5></div>');
+								$('.result').html('<div class="card-body"><h5 class="text-danger"><b>Total deposite of this date: '+ deposite +'</b></h5></div>');
 							}
 							
 						}
@@ -218,6 +218,43 @@ $total_withdraw = $withdraw->fetchColumn();
         				</div>
         			</div>
         		</div>
+
+				<div class="col-md-4 col-sm-6 col-xs-12">
+					<div class="card">
+						<div class="card-body">
+						<small class="text-orange">Select date for withdraw</small>
+						<input type="date" id="withdrawDate" class="form-control shadow-none mt-2">
+						</div>
+					</div>
+ 
+					<div class="card withdraw_result">
+					
+					</div>
+					
+				</div>
+				<script>
+				$('#withdrawDate').change(function(){
+					var data = {
+						date: $('#withdrawDate').val()
+					}
+
+					$.ajax({
+						type: 'POST',
+						url: 'live-withdraw-count.php',
+						data: data,
+						success : function(response){
+							var obj = JSON.parse(response);
+							var total_withdraw = obj.amount;
+							if(total_withdraw > 0){
+								$('.withdraw_result').html('<div class="card-body"><h5 class="text-success"><b>Total withdraw of this date: '+ total_withdraw +'</b></h5></div>');
+							} else{
+								$('.withdraw_result').html('<div class="card-body"><h5 class="text-danger"><b>Total withdraw of this date: '+ total_withdraw +'</b></h5></div>');
+							}
+							
+						}
+					});
+				});
+				</script>
         		
         	</div>
         </section>
