@@ -78,6 +78,7 @@
           <table id="example1" class="table table-bordered table-striped">
 			<thead>
 			    <tr>
+			        <th></th>
 			        <th>SL</th>
 			        <th>Request BY</th>
 			        <th>Amount (Tk)</th>
@@ -132,8 +133,8 @@
 							<input type="checkbox" class="form-check-input" value="<?php echo $row['withdraw_id']; ?>">
 						</td>
 						<td><?php echo $i; ?></td>
-	                    <td><?php echo $name; ?></td>
-	                    <td><?php echo $row['amount']; ?></td>
+						<td><?php echo $name; ?></td>
+						<td><?php echo $row['amount']; ?></td>
 	                    <td><?php echo $row['method']; ?></td>
 	                    <td><?php echo $row['send_to']; ?></td>
 						<td><?php echo $row['account_type']; ?></td>
