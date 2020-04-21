@@ -42,9 +42,11 @@ if(isset($_POST['submit_win'])){
             $statement8 = $pdo->prepare("INSERT INTO tbl_transaction (detail_id, type, description,transaction_date,user_balance) VALUES (?,?,?,?,?)");
             $statement8->execute(array($bet_id,$type1,$detail1,$date,$final_amounts));
             
-            $statement3 = $pdo->prepare("UPDATE tbl_bet SET bet_status=? WHERE bet_id=?");
-            $statement3->execute(array(1,$bet_id));
+            // $statement3 = $pdo->prepare("UPDATE tbl_bet SET bet_status=? WHERE bet_id=?");
+            // $statement3->execute(array(1,$bet_id));
         }
+        $bet_table_update = $pdo->prepare("UPDATE tbl_bet SET bet_status=? WHERE stake_id=?");
+        $bet_table_update->execute(array(2,$_POST['stake_id']));
         header("Location: " . $_SERVER["HTTP_REFERER"]);
     }
 

@@ -104,42 +104,69 @@
 															</td>
 															<td>
 																<?php 
-																if($row21['bet_status']==1){
+																if($row21['stake_status']==2){
 																	?>
 																	<strong style="color: green;">
 																		<?php echo "WIN"; ?>
 																	</strong>
 																	<?php    
-																}
-																else if($row21['bet_status']==2){
-																	?>
-																	<strong style="color: red;">
-																		<?php echo "LOSS"; ?>
-																	</strong> 
-																	<?php
-																}
-																else if($row21['bet_status']==3){
+																} else if($row21['stake_status']==3){ ?>
+																 	<strong style="color: red;">
+																 		<?php echo "LOSS"; ?>
+																 	</strong> 
+																<?php
+																 }
+																?>
+
+<?php 
+																// if($row21['bet_status']==1){
 																	?>
 																	<strong style="color: green;">
-																		<?php echo "SOLD"; ?>
+																		<?php 
+																// 		echo "WIN"; 
+																		?>
 																	</strong>
 																	<?php    
-																}
-																else if($row21['bet_status']=="Canceled"){
+																// }
+																// else if($row21['bet_status']==2){
 																	?>
 																	<strong style="color: red;">
-																		<?php echo "CANCELLED"; ?>
+																		<?php 
+																// 		echo "LOSS";
+																		?>
+																	</strong> 
+																	<?php
+																// }
+																// else if($row21['bet_status']==3){
+																	?>
+																	<strong style="color: green;">
+																		<?php 
+																// 		echo "SOLD";
+																		?>
+																	</strong>
+																	<?php    
+																// }
+																// else if($row21['bet_status']=="Canceled"){
+																	?>
+																	<strong style="color: red;">
+																		<?php 
+																// 		echo "CANCELLED"; 
+																		?>
 																	</strong> 
 																	<?php     
-																}
-																else if($row21['bet_status']==0){
+																// }
+																// else if($row21['bet_status']==0){
 																	?>
 																	<strong style="color: #cc338b;">
-																		<?php echo "PENDING"; ?>
+																		<?php 
+																// 		echo "PENDING";
+																		?>
 																	</strong> 
 																	<?php    
-																}
+																// }
 																?>
+																
+																
 															</td>
 														</tr>
 													<?php } ?>
