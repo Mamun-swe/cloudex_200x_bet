@@ -161,7 +161,13 @@ if(!isset($_SESSION['admin']) AND empty($_SESSION['admin'])) {
 
 					<li class="treeview <?php if( ($cur_page == 'bet.php') ) {echo 'active';} ?>">
 						<a href="bet.php">
-							<i class="fa fa-hand-o-right"></i><span>Bet List</span>
+							<i class="fa fa-hand-o-right"></i><span>Single Bet List</span>
+						</a>
+					</li>
+
+					<li class="treeview <?php if( ($cur_page == 'multi-bet-list.php') ) {echo 'active';} ?>">
+						<a href="multi-bet-list.php">
+							<i class="fa fa-hand-o-right"></i><span>Multi Bet List</span>
 						</a>
 					</li>
 

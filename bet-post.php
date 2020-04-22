@@ -166,9 +166,9 @@ else if($ucredit < $uid){
       "));
 }
 else{
-
-  $state1 = $pdo->prepare("INSERT INTO `tbl_bet`(`bet_by`, `game_id`, `stake_id`, `amount`, `current_rate`, `return_amount`, `sell_price`, `date`, `bet_status`) VALUES (?,?,?,?,?,?,?,?,?)");
-  $state1->execute(array($userid,$gid,$id,$_POST['amount'],$row['rate'],$return_amount,$sell,$date,$a));
+    $bet_type = 'single';
+  $state1 = $pdo->prepare("INSERT INTO `tbl_bet`(`bet_by`, `game_id`, `stake_id`, `amount`, `current_rate`, `return_amount`, `sell_price`, `date`, `bet_status`, `bet_type`) VALUES (?,?,?,?,?,?,?,?,?,?)");
+  $state1->execute(array($userid,$gid,$id,$_POST['amount'],$row['rate'],$return_amount,$sell,$date,$a,$bet_type));
   
   $credit=$ucredit-$_POST['amount'];
   $bet_amount=$_POST['amount'];

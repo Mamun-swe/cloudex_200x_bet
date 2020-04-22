@@ -2,7 +2,7 @@
 
 <section class="content-header">
 	<div class="content-header-left">
-		<h1>View Bets</h1>
+		<h1>View Multi Bets</h1>
 	</div>
 	<?php if($_SESSION['admin']['role'] == 'Super admin') { ?>
 	<div class="content-header-right">
@@ -10,7 +10,7 @@
 			<button type="submit" name="submit" class="btn btn-danger">Delete All</button>
 			<?php 
 				if(isset($_POST['submit'])){
-					$statement = $pdo->prepare("DELETE FROM tbl_bet WHERE bet_type = 'single'");
+					$statement = $pdo->prepare("DELETE FROM tbl_bet WHERE bet_type = 'multi'");
 					$statement->execute();
 				}
 			?>
@@ -60,7 +60,7 @@
 								JOIN tbl_member ON tbl_bet.bet_by=tbl_member.user_id
 								JOIN tbl_game ON tbl_bet.game_id=tbl_game.game_id
 								JOIN tbl_stake ON tbl_bet.stake_id=tbl_stake.stake_id
-								WHERE bet_type = 'single'
+								WHERE bet_type = 'multi'
 								ORDER BY bet_id DESC
 								");
 							$statement->execute();

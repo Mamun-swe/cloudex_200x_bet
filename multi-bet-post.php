@@ -12,7 +12,7 @@
     $amount = $_POST['multi-amount'];
 
     // if($number > 0){
-        for($i=0; $i<$number; $i++){
+        for($i=0; $i < $number; $i++){
             // echo json_encode($_POST['stake_id'][$i]);
             $stated = $pdo->prepare("SELECT * FROM tbl_stake JOIN tbl_game ON tbl_stake.game_id=tbl_game.game_id WHERE tbl_stake.stake_id=?");
             $stated->execute(array($_POST['stake_id'][$i]));
@@ -57,9 +57,9 @@
             }else if($ucredit < $uid){
                 echo json_encode('Insufficient balance, please deposit first and continue.');
             }else{
-
-                $state1 = $pdo->prepare("INSERT INTO `tbl_bet`(`bet_by`, `game_id`, `stake_id`, `amount`, `current_rate`, `return_amount`, `sell_price`, `date`, `bet_status`) VALUES (?,?,?,?,?,?,?,?,?)");
-                $state1->execute(array($userid,$gid,$id,$_POST['multi-amount'],$row['rate'],$return_amount,$sell,$date,$a));
+                $bet_type = 'multi';
+                $state1 = $pdo->prepare("INSERT INTO `tbl_bet`(`bet_by`, `game_id`, `stake_id`, `amount`, `current_rate`, `return_amount`, `sell_price`, `date`, `bet_status`, `bet_type`) VALUES (?,?,?,?,?,?,?,?,?,?)");
+                $state1->execute(array($userid,$gid,$id,$_POST['multi-amount'],$row['rate'],$return_amount,$sell,$date,$a, $bet_type));
                 
                 $credit=$ucredit-$_POST['multi-amount'];
                 $bet_amount=$_POST['multi-amount'];
