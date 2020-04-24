@@ -42,6 +42,7 @@
 														<th style="font-size: 20px;">Amount(Won)</th>
 														<th style="font-size: 20px;">Notes</th>
 														<th style="font-size: 20px;">Win/Lose</th>
+														<th style="font-size: 20px;">Bet Type</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -101,6 +102,9 @@
 																	<?php
 																}
 																?>
+																<!-- Uniq Id -->
+																<?php echo $row21['uniq_id']; ?> 
+
 															</td>
 															<td>
 																<?php 
@@ -118,7 +122,7 @@
 																 }
 																?>
 
-<?php 
+															<?php 
 																// if($row21['bet_status']==1){
 																	?>
 																	<strong style="color: green;">
@@ -167,6 +171,15 @@
 																?>
 																
 																
+															</td>
+															<td>
+																<?php 
+																	if($row21['bet_type'] == 'multi'){
+																		echo "Multi Bet";
+																	}elseif($row21['bet_type'] == 'single'){
+																		echo "Single Bet";
+																	}
+																?>
 															</td>
 														</tr>
 													<?php } ?>

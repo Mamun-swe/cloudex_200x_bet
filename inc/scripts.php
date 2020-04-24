@@ -344,8 +344,9 @@ $('#multi-bet-form-submit').click(function(e) {
         dataType: "text",
         data: $('#multi-bet-form').serialize(),
         success: function(response) {
-            var res = JSON.parse(response);
             console.log(response);
+            var res = JSON.parse(response);
+            
             $('#multi-bet-message').append('<div class="alert alert-success" role="alert">' + res +
                 '</div>');
         }
