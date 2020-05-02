@@ -103,7 +103,9 @@
 																}
 																?>
 																<!-- Uniq Id -->
-																<?php echo $row21['uniq_id']; ?> 
+																<?php 
+																// echo $row21['uniq_id'];
+																 ?> 
 
 															</td>
 															<td>
